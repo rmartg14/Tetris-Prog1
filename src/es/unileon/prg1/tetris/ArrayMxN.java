@@ -27,23 +27,26 @@ public class ArrayMxN {
     }
 
     public int get(int row, int column) {
+        int valor;
+        valor=Integer.MIN_VALUE;
         if(row<this.rows()&&row>=0){
             if(column<this.columns()&&column>=0){
-                return array[row][column];
+                valor= array[row][column];
             }
         }
-        return Integer.MIN_VALUE;
+        return valor;
     }
 
     public boolean set(int row, int column, int value) {
+        boolean introducido=false;
         if(row<this.rows()&&row>=0){
             if(column<this.columns()&&column>=0){
                 array[row][column]=value;
-                return true;
+                introducido=true;
             }
         }
 
-        return false;
+        return introducido;
     }
 
     public String toString(){

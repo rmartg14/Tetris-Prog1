@@ -37,18 +37,21 @@ public class ArrayNxN extends ArrayMxN{
     }
 
     private boolean isEmptyRow(int m) {
+        boolean isEmpty;
         if(m>this.length()){
-            return true;
+            isEmpty=true;
         }else{
-            return false;
+            isEmpty=false;
         }
+        return isEmpty;
     }
 
     private boolean isEmptyColumn(int n) {
+        boolean isEmpty=false;
         if(n>array[0].length){
-            return true;
+            isEmpty=true;
         }
-        return false;
+        return isEmpty;
     }
 
     private int getEmptyColumnsLeft() {
@@ -145,6 +148,7 @@ public class ArrayNxN extends ArrayMxN{
     }
 
     public ArrayMxN getMinArray() {
+        ArrayMxN result;
         int n=this.length();
         if(n>2){
             int row=n-getEmptyRowsDown()-getEmptyRowsUp();
@@ -168,33 +172,37 @@ public class ArrayNxN extends ArrayMxN{
                 p=0;
 
             }
-            return sol;
+            result=sol;
         }else{
-            return null;
+            result=null;
         }
+        return result;
         
        
     }
 
     public int get(int row, int column) {
+        int introducido;
+        introducido=Integer.MIN_VALUE;
         if(row<this.rows()&&row>=0){
             if(column<this.columns()&&column>=0){
-                return array[row][column];
+                introducido=array[row][column];
             }
         }
-        return Integer.MIN_VALUE;
+        return introducido;
     }
     
 
     public boolean set(int row, int column, int value) {
+        boolean introducido=false;
         if(row<this.rows()&&row>=0){
             if(column<this.columns()&&column>=0){
                 array[row][column]=value;
-                return true;
+                introducido=true;
             }
         }
 
-        return false;
+        return introducido;
         
     }
 
@@ -254,6 +262,7 @@ public class ArrayNxN extends ArrayMxN{
     }
 
     public ArrayNxN multiply(ArrayNxN another) {
+        ArrayNxN result;
         if(array[0].length==another.length()){
             int n= this.length();
             int sum=0;
@@ -268,10 +277,11 @@ public class ArrayNxN extends ArrayMxN{
                     sum=0;
                 }
             }
-            return mult;
+            result=mult;
         }else{
-            return null;
+            result=null;
         }
+        return result;
     }
 
     public ArrayNxN spinRight() {
