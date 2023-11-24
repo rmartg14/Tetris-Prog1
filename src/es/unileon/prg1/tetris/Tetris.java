@@ -22,13 +22,11 @@ public class Tetris{
 
     private Block createRandomBlock() {
         int num;
+        
         Random randomNumber=new Random();
         randomNumber.setSeed(System.currentTimeMillis());
-        num=randomNumber.nextInt(7);
-        switch(num){
-            case
-        }
-        return null;
+        num=randomNumber.nextInt(8);
+        return create(num);
     }
 
 
@@ -56,14 +54,15 @@ public class Tetris{
     }
 
 
-    public void drop() {
+    public boolean drop() {
+        return false;
     }
 
 
    
 
 
-    public void spinRigth() {
+    public void spinRight() {
     }
 
 
@@ -72,6 +71,38 @@ public class Tetris{
 
 
     public void set(Block block2) {
+    }
+
+
+    public Block create(int i) {
+        Block bloque;
+        switch(i){
+            case 0: bloque=new Block();
+                break;
+            case 1: bloque=new Block();
+                break;
+            case 2: bloque=new BlockI();
+                break;
+            case 3: bloque=new BlockJ();
+                break;
+            case 4: bloque=new BlockL();
+                break;
+            case 5: bloque=new BlockT();
+                break;
+            case 6: bloque=new BlockS();
+                break;
+            case 7: bloque=new BlockZ();
+                break;
+            
+        
+
+        }
+        return null;
+    }
+   
+   
+    public String toString(){
+        return "";
     }
 
 

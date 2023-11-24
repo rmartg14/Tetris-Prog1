@@ -23,11 +23,11 @@ public class TetrisTextUI{
             switch(entrada){
                 case "W":juego.spinLeft();
                     break;
-                case "E":juego.spinRigth();
+                case "E":juego.spinRight();
                     break;
                 case "A":juego.moveLeft();
                     break;
-                case "D":juego.moveRight();
+                case "D":juego.moveRigth();
                     break;
                 case "S":juego.drop();
                     break;
