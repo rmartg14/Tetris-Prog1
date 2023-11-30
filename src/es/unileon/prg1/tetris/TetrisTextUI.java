@@ -7,19 +7,21 @@ public class TetrisTextUI{
     public TetrisTextUI(Tetris tetris){
         this.juego=tetris;
     }
-    public void init() throws TetrisException {
+    public void init() {
         boolean end=false;
         String entrada="";
         do{
             System.out.println("TETRIS");
-            juego.toString();
+            System.out.println(juego.toString());
             System.out.println("W-> GIRAR A LA IZQUIERDA");
             System.out.println("E-> GIRAR A LA DERECHA");
             System.out.println("A-> MOVER A LA IZQUIERDA");
             System.out.println("D-> MOVER A LA IZQUIERDA");
             System.out.println("S-> BAJAR PIEZA");
             System.out.println("Exit->Salir");
-            entrada=introduceTeclado();
+            try{
+                entrada=introduceTeclado();
+            }catch(TetrisException e){}
             switch(entrada){
                 case "W":juego.spinLeft();
                     break;
@@ -38,7 +40,7 @@ public class TetrisTextUI{
             if(juego.perder()){
                 end=true;
             }
-        }while(true&&!end);
+        }while(!end);
     }
     public String introduceTeclado() throws TetrisException{
         String introducido;

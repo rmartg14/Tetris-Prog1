@@ -52,7 +52,11 @@ public class Tetris{
 
 
     public boolean perder() {
-        return false;
+        boolean hePerdido=false;
+        if(drop()==false){
+            hePerdido=true;
+        }
+        return hePerdido;
     }
 
 
