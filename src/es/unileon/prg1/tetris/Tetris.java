@@ -14,7 +14,7 @@ public class Tetris{
     public Tetris(int rows, int columns, String tieneColor){
         this.board= new Board(rows,columns);
         ColorStrategySingleton.getInstance(tieneColor);
-        this.block=createRandomBlock();
+        this.set(createRandomBlock());
         this.points=0;
 
     }
@@ -42,10 +42,12 @@ public class Tetris{
 
 
     public void spinLeft() {
+        block.spinLeft();
     }
 
 
     public void moveLeft() {
+        block.moveLeft();
     }
 
 
@@ -63,19 +65,23 @@ public class Tetris{
 
 
     public void spinRight() {
+        block.spinRight();
     }
 
 
     public void moveRigth() {
+        block.moveRight();
+
     }
 
 
     public void set(Block block2) {
+        this.block=block2;
     }
 
 
     public Block create(int i) {
-        Block bloque;
+        Block bloque=null;
         switch(i){
             case 0: bloque=new Block();
                 break;
@@ -97,12 +103,20 @@ public class Tetris{
         
 
         }
-        return null;
+        return bloque;
     }
    
    
     public String toString(){
-        return "";
+        StringBuffer buffer=new StringBuffer();
+        buffer.append(block.toString());
+        buffer.append("\n");
+        buffer.append(board.toString());
+        buffer.append("\n");
+        buffer.append("PUNTUACION: "+points);
+        buffer.append("\n");
+
+        return buffer.toString();
     }
 
 
