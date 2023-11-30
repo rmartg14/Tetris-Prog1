@@ -1,19 +1,47 @@
 package es.unileon.prg1.tetris;
 
 public class Board {
-    private int rows;
 
+    private Piece[][] tablero;
+//es cambiar para que se mueve en coordenadas el drop, poniendo coordenadas.y
+//es cambiar 
     public Board(int rows, int columns) {
-    	this.rows=rows;
-    	this.columns=columns;
-    	
-    	
+    	this.tablero = new Piece[rows][columns];
+        
     }
+    //creacion de una iniciacion del tablero con todo 0's
+    public void iniciarTablero(){
+        Piece emptyPiece= new Piece();
+        for(int i=0; i<tablero.length;i++){
+            for (int j=0; j<tablero[0].length; j++){
+                tablero[i][j]=emptyPiece;
+            }
+        }
+    }
+    public int getNumberOfRows(){
+        return tablero.length;
+    }
+    public int getNumberOfColumns(){
+        return tablero[0].length;
+    }
+//drop
+/* sabiendo que lo que mide cada objeto, de ancho y largo hacer
+sabiendo dsde que x1 empieza y x2 acaba, ir bajando y's
+cuando y=0, entra la pieza?
+si
+cuando y=1, entra la pieza?
+si
+...
+cuando y=3, entra la pieza?
+no
+colocar bloque en y=3-1.
+cuando se sabe donde esta el bloque, se genera 
+si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
+*/
+    public int placeAndDropBlock(int[] block) {
 
-    public static int placeAndDropBlock(int[][] matriz, int[] block) {
-        int rows = matriz.length;
-        int columns = matriz[0].length;
-        int lengthBlock = block.length;
+        int lengthBlock = block[0].length;
+        int heightbBlock = block.length;
     
         int placeBlockDrops = -1;
     
@@ -22,7 +50,7 @@ public class Board {
     
             for (int a = 0; a < lengthBlock && canDrop; a++) { //va ir dropeando hasta que llegue la ultima fila que no choca
                 for (int j = 0; j < columns && canDrop; j++) {
-                    if (matriz[a + i][j] == 1 && block[a] == 1) {
+                    if (tablero[a + i][j] == 1 && block[a] == 1) {
                         canDrop = false;
                     }
                 }
@@ -37,7 +65,7 @@ public class Board {
             for (int a = 0; a < lengthBlock; a++) {
                 for (int j = 0; j < columns; j++) {
                     if (block[a] == 1) {
-                        matriz[a + placeBlockDrops][j] = 1;
+                        tablero[a + placeBlockDrops][j] = 1;
                     }
                 }
             }
@@ -45,26 +73,17 @@ public class Board {
     
         return placeBlockDrops; //devuelve la ultima fila donde se puede  colocar el bloque, sin chocar
     }
-    
-
-
-
-
-
-
-
-
 
     //con este metodo compruebo si la matriz esta llena de 1's
-public static boolean existOnesRows(int[][] matriz) {
+public boolean existFullRows(int[][] ) {
     for (int[] row : matriz) {
-        boolean rowFullOfOnes = true;
+        boolean rowFull = true;
         for (int valor : row) {
             if (valor != 1) {
-                rowFullOfOnes = false;
+                rowFull = false;
             }
         }
-        if (rowFullOfOnes) {
+        if (rowFull) {
             return true;
         }
     }
@@ -75,26 +94,26 @@ public static boolean existOnesRows(int[][] matriz) {
 //en caso de haber se cambian por 0's y luego se baja todas las filas superiores
 //además se añade una fila de 0's a la matriz en su parte superior 
 //ya que despues de moverse unas filas pa bajo, la de arriba se quedaria sin nada
-public static void deleteOnesRows(int[][] matriz) {
-    int row = matriz.length - 1;
+public void deleteFullRows() {
+    int row = tablero.length - 1;
     while (row >= 0) {
-        boolean rowFullOfOnes = true;
-        for (int valor : matriz[row]) {
+        boolean rowFull = true;
+        for (int valor : tablero.row) {
             if (valor != 1) {
-                rowFullOfOnes = false;
+                rowFull = false;
             }
         }
 
-        if (rowFullOfOnes) {
+        if (rowFull) {
             // Si es una fila de 1's, eliminarla y ponerla en 0's
-            for (int i = 0; i < matriz[0].length; i++) {
-                matriz[row][i] = 0;
+            for (int i = 0; i < tablero[0].length; i++) {
+                tablero[row][i] = 0;
             }
 
             // Ajustar las filas superiores
             for (int i = row - 1; i >= 0; i--) {
-                for (int j = 0; j < matriz[0].length; j++) {
-                    matriz[i + 1][j] = matriz[i][j];
+                for (int j = 0; j < tablero[0].length; j++) {
+                    tablero[i + 1][j] = tablero[i][j];
                 }
             }
         }
