@@ -1,60 +1,109 @@
 package es.unileon.prg1.tetris;
 
 public class Board {
-
+    private int rows;
 
     public Board(int rows, int columns) {
     	this.rows=rows;
     	this.columns=columns;
-    	this.points=0;
+    	
     	
     }
 
-    public boolean canDrop(Block block) { //con este metodo secomprueba si hay o no hay cabida para el bloque debajo
-
-        boolean result = true;
-
-        for (int i = 0; i < 4; i++) {
-            int row = block.getrows() + block.getBlocks()[i].getrows();
-            int column = block.getcolumns() + block.getBlocks()[i].getcolumns() + 1;
-            if (column >= height || getBlock(row, column) != null) {
-                result = false;
-                break;
+    public static int placeAndDropBlock(int[][] matriz, int[] block) {
+        int rows = matriz.length;
+        int columns = matriz[0].length;
+        int lengthBlock = block.length;
+    
+        int placeBlockDrops = -1;
+    
+        for (int i = 0; i < rows - lengthBlock + 1 && placeBlockDrops == -1; i++) {
+            boolean canDrop = true;
+    
+            for (int a = 0; a < lengthBlock && canDrop; a++) { //va ir dropeando hasta que llegue la ultima fila que no choca
+                for (int j = 0; j < columns && canDrop; j++) {
+                    if (matriz[a + i][j] == 1 && block[a] == 1) {
+                        canDrop = false;
+                    }
+                }
+            }
+    
+            if (canDrop) {
+                placeBlockDrops = i;
             }
         }
-        return result;
-    }
-
-    public void drop1Row() {  //con CanDropRow en true, se movería el bloque una abajo
-
-        if (canDropRow(Block)) {
     
-            Block.setcolumn(Block.getcolumns() + 1);
-    
+        if (placeBlockDrops != -1) {
+            for (int a = 0; a < lengthBlock; a++) {
+                for (int j = 0; j < columns; j++) {
+                    if (block[a] == 1) {
+                        matriz[a + placeBlockDrops][j] = 1;
+                    }
+                }
+            }
         }
     
-    }
-
-    public boolean isRowFull(int row) {
-    	
-    }
-    public void removeRow(int row) {
-	if (isRowFull=true){
-		
-    }
-    public int increasePoints(int Points){
-    	if (isRowFull(row)){
-    		Points=Points+1;
-        }
-        return Points;
+        return placeBlockDrops; //devuelve la ultima fila donde se puede  colocar el bloque, sin chocar
     }
     
-    		
-    	
 
 
+
+
+
+
+
+
+
+    //con este metodo compruebo si la matriz esta llena de 1's
+public static boolean existOnesRows(int[][] matriz) {
+    for (int[] row : matriz) {
+        boolean rowFullOfOnes = true;
+        for (int valor : row) {
+            if (valor != 1) {
+                rowFullOfOnes = false;
+            }
+        }
+        if (rowFullOfOnes) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+//en caso de haber se cambian por 0's y luego se baja todas las filas superiores
+//además se añade una fila de 0's a la matriz en su parte superior 
+//ya que despues de moverse unas filas pa bajo, la de arriba se quedaria sin nada
+public static void deleteOnesRows(int[][] matriz) {
+    int row = matriz.length - 1;
+    while (row >= 0) {
+        boolean rowFullOfOnes = true;
+        for (int valor : matriz[row]) {
+            if (valor != 1) {
+                rowFullOfOnes = false;
+            }
+        }
+
+        if (rowFullOfOnes) {
+            // Si es una fila de 1's, eliminarla y ponerla en 0's
+            for (int i = 0; i < matriz[0].length; i++) {
+                matriz[row][i] = 0;
+            }
+
+            // Ajustar las filas superiores
+            for (int i = row - 1; i >= 0; i--) {
+                for (int j = 0; j < matriz[0].length; j++) {
+                    matriz[i + 1][j] = matriz[i][j];
+                }
+            }
+        }
+
+        row--;
+    }
 }
 }
+
 /*
 
 dos siguientes operaciones importantes:
@@ -63,5 +112,14 @@ Los metodos necesarios para crear el drop, de forma "temporarl" de las piezas do
 
 Los metodos necesarios (todo dependiendo de la matriz de piezas) cuando una fila se rellene entera, que desaparezcan las piezas de ella
 y (con gravedad) caen las piezas de las filas superiores, además se incrementaria el contador de puntuacion.
+
+arreglame el codigo antes para los siguientes caso:
+
+que se haga todo lo menciado en el metodo eliminarfilasdeunos, en caso de haber mas de una fila entera llena de 1's para todas las filas, no solo una
+
+
+
+
+
 
  */
