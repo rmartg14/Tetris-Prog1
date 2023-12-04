@@ -49,7 +49,7 @@ public class TetrisTest {
 
     @Test(expected = TetrisException.class)
     public void testTetrisTooManyColumns() throws TetrisException {
-        new Tetris(10, 11, "noColor");
+        new Tetris(10, 21, "noColor");
     }
 
     @Test
