@@ -3,6 +3,7 @@ package es.unileon.prg1.tetris;
 public class Board {
 
     private Piece[][] tablero;
+    private Block block;
     private Piece Piece;
     private int marcador;
 //es cambiar para que se mueve en coordenadas el drop, poniendo coordenadas.y
@@ -40,9 +41,15 @@ colocar bloque en y=3-1.
 cuando se sabe donde esta el bloque, se genera 
 si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
 */
-public void canDrop(int[][] block, int x) {
-    int lengthBlock = block[0].length;
-    int maxY = tablero.length - block.length;
+
+ 
+/* DUDAS
+ * como poner las piezas que se corresponden al block que tenemos
+ * como poner para que termine el juego (se lo pregunto antes a los compañeros)
+ */
+public void canDrop(Block block, int x) {
+    int lengthBlock = block.columns();
+    int maxY = tablero.length - block.rows();
 
     if (canPlace(block, x, 0)) {
         int y = 0;
@@ -58,10 +65,10 @@ public void canDrop(int[][] block, int x) {
     }
 }
 
-
-private boolean canPlace(int[][] block, int x, int y) {
-    for (int i = 0; i < block.length; i++) {
-        for (int j = 0; j < block[i].length; j++) {
+//este metodo comprueba si se puede poner o no poner el bloque en ese sitio
+private boolean canPlace(Block block, int x, int y) {
+    for (int i = 0; i < block.rows(); i++) {
+        for (int j = 0; j < block.columns(i); j++) {
             if (tablero[y + i][x + j] == Piece(color, sign)) {
                 return false; 
             }
@@ -70,9 +77,9 @@ private boolean canPlace(int[][] block, int x, int y) {
     return true; 
 }
 
-private void placeBlock(int[][] block, int x, int y) {
-    for (int i = 0; i < block.length; i++) {
-        for (int j = 0; j < block[i].length; j++) {
+private void placeBlock(Block block, int x, int y) {
+    for (int i = 0; i < block.rows(); i++) {
+        for (int j = 0; j < block.columns(i); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(color, sign);
         }
@@ -116,12 +123,15 @@ private void placeBlock(int[][] block, int x, int y) {
     }
 }
 
+
+
 /*
 
-dos  operaciones importantes:
-Los metodos necesarios para crear el drop, de forma "temporarl" de las piezas donde se va mirando si la el blocke cabe en la siguiente fila,
+Board se basa en dos  operaciones importantes:
+Los metodos necesarios para crear el drop, de forma "temporal" de las piezas donde se va mirando si la el blocke cabe en la siguiente fila,
 así hasta que llegue a tocar piezas, donde se pone de forma "real" el bloque en cuestion.
 
 Los metodos necesarios (todo dependiendo de la matriz de piezas) cuando una fila se rellene entera, que desaparezcan las piezas de ella
 y (con gravedad) caen las piezas de las filas superiores, además se incrementaria el contador de puntuacion.
  */
+
