@@ -79,7 +79,7 @@ public class Block {
             for (int j = 0; j < bloque.columns(); j++) {
                 stringBuffer.append(bloque.get(i, j));
             }
-            stringBuffer.append("/n");
+            stringBuffer.append("\n");
         }
         return stringBuffer.toString(); 
     }
