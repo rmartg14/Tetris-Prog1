@@ -12,10 +12,6 @@ public class MainTetris {
         String color="";
 		if(args.length!=3){
 			System.out.println("Debes meter 3 argumentos");
-		}else if(Integer.parseInt(args[0])<5||Integer.parseInt(args[0])>20){
-			System.out.println("Error, el numero de filas debe estar entre 5 y 20");
-		}else if(Integer.parseInt(args[1])<6||Integer.parseInt(args[1])>20){
-			System.out.println("Error, el numero de columnas debe estar entre 6 y 20");
 		}else{
 			try {
 				rows = Integer.parseInt(args[0]);
@@ -36,9 +32,14 @@ public class MainTetris {
 				System.out.println("Error: argumento inválido para el color.");
 			}
 	
-			tetris = new Tetris(rows, columns, color);
-			ui = new TetrisTextUI(tetris);
-			ui.init();
+			try {
+				tetris = new Tetris(rows, columns, color);
+				ui = new TetrisTextUI(tetris);
+				ui.init();
+			} catch (TetrisException e) {
+				e.printStackTrace();
+			}
+			
 
 		}
         

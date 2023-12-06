@@ -11,14 +11,26 @@ public class Tetris{
     private int points;
     
     
-    public Tetris(int rows, int columns, String tieneColor){
-        this.board= new Board(rows,columns);
-        ColorStrategySingleton.getInstance(tieneColor);
-        this.set(createRandomBlock());
-        this.points=0;
+    public Tetris(int rows, int columns, String tieneColor) throws TetrisException{
+            checkArguments(rows,columns);
+            this.board= new Board(rows,columns);
+            ColorStrategySingleton.getInstance(tieneColor);
+            this.set(createRandomBlock());
+            this.points=0;
+       
+        
 
     }
     
+
+    private void checkArguments(int rows, int columns) throws TetrisException {
+    if(rows<5||rows>20){
+        throw new TetrisException("Error, el numero de filas debe estar entre 5 y 20");
+    }else if(columns<6||columns>20){
+        throw new TetrisException("Error, el numero de columnas debe estar entre 6 y 20");
+    }
+}
+
 
     private Block createRandomBlock() {
         int num;
@@ -42,7 +54,7 @@ public class Tetris{
 
 
     public void spinLeft() {
-        block.spinLeft();
+        block.rotateLeft();
     }
 
 
@@ -61,7 +73,17 @@ public class Tetris{
 
 
     public boolean drop() {
-        return false;
+        boolean puede=false;
+        int puntuacionObt=0;
+        int x=block.getX();
+        int y=block.getY();
+        puede=(board.canDrop(block,x));
+        if(puede){
+           puntuacionObt=board.checkAndDeleteRows();
+           points+=puntuacionObt;
+        }
+        
+        return puede;
     }
 
 
@@ -69,7 +91,7 @@ public class Tetris{
 
 
     public void spinRight() {
-        block.spinRight();
+        block.rotateRight();
     }
 
 
