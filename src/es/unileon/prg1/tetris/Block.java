@@ -11,6 +11,14 @@ public class Block {
         bloque.set(1, 0, 1);
         bloque.set(1, 1, 1);
     }
+
+    public int getColumnsBlock(){
+        return bloque.columns();
+    }
+
+    public int getRowsBlock(){
+        return bloque.rows();
+    }
     
     public void rotateLeft(){
         int mayorL = 0;
@@ -66,7 +74,7 @@ public class Block {
 
     public void moveRight(){
         Board t = new Board(0, 0);
-        //Hacer un set para el board
+        
         if (cor.getX() + bloque.columns() < t.getNumberOfColumns()) {
             cor.moverDerecha();
         }

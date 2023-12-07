@@ -82,7 +82,7 @@ private boolean canPlace(Block block, int x, int y) {
 }
 
 private void placeBlock(Block block, int x, int y) {
-    for (int i = 0; i < bloque.rows(); i++) {
+    for (int i = 0; i < block.rows(); i++) {
         for (int j = 0; j < block.columns(i); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(color, sign);
@@ -94,7 +94,7 @@ private void placeBlock(Block block, int x, int y) {
  
     //general
     public int checkAndDeleteRows() {
-        int marcador;
+        int marcador = 0;
         for (int i = tablero.length - 1; i >= 0; i--) {
             if (isRowEmpty(i)) {
                 deleteRow(i);
