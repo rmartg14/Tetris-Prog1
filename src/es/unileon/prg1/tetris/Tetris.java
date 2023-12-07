@@ -59,7 +59,10 @@ public class Tetris{
 
 
     public void moveLeft() {
-        block.moveLeft();
+        if(block.getX()>0){
+            block.moveLeft();
+        }
+        
     }
 
 
@@ -95,7 +98,10 @@ public class Tetris{
 
 
     public void moveRigth() {
-        block.moveRight();
+        if(block.getX()+block.getColumnsBlock()<board.getNumberOfColumns()){
+            block.moveRight();
+        }
+        
 
     }
 

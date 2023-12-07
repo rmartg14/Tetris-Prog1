@@ -8,11 +8,26 @@ import org.junit.Test;
 
 public class BoardTest {
     private Board board1, board2, board3;
+    private Block blockC;
+    private BlockI blockI;
+    private BlockJ blockJ;
+    private BlockL blockL;
+    private BlockS blockS;
+    private BlockT blockT;
+    private BlockZ blockZ;
     @Before
     public void setUp()throws Exception{
         this.board1=new Board(5,6);
         this.board2=new Board(10, 10);
         this.board3=new Board(8, 8);
+        this.blockC=new Block();
+        this.blockI=new BlockI();
+        this.blockJ=new BlockJ();
+        this.blockL=new BlockL();
+        this.blockS=new BlockS();
+        this.blockT=new BlockT();
+        this.blockZ=new BlockZ();
+
         this.board1.iniciarTablero();
         this.board2.iniciarTablero();
         this.board3.iniciarTablero();
@@ -71,15 +86,21 @@ public class BoardTest {
     }
     @Test
     public void testDropCuadradoNeg()throws TetrisException{
-        assertFalse(board1.canDrop(new Block(), -1));
-        assertFalse(board2.canDrop(new Block(), -2));
-        assertFalse(board3.canDrop(new Block(), -3));
+        blockC.moveLeft();
+        assertFalse(board1.canDrop(blockC));
+        blockC.moveLeft();
+        blockC.moveLeft();
+        assertFalse(board2.canDrop(blockC));
+        blockC.moveLeft();
+        blockC.moveLeft();
+        blockC.moveLeft();
+        assertFalse(board3.canDrop(blockC));
     }
     @Test
     public void testDropCuadrado0()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 0));
-        assertTrue(board2.canDrop(new Block(), 0));
-        assertTrue(board3.canDrop(new Block(), 0));
+        assertTrue(board1.canDrop(blockC));
+        assertTrue(board2.canDrop(blockC));
+        assertTrue(board3.canDrop(blockC));
         
         assertEquals("│            │\n" + //
                      "│            │\n" + //
