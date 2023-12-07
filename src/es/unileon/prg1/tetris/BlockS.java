@@ -8,7 +8,7 @@ public class BlockS extends Block{
         blockS.set(0, 2, 1);
         blockS.set(1, 0, 1);
         blockS.set(1, 1, 1);
-        blockS.set(1, 3, 0);
+        blockS.set(1, 2, 0);
         
     }
     
