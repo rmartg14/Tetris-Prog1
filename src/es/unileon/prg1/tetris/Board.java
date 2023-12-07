@@ -5,9 +5,7 @@ public class Board {
     private Piece[][] tablero;
     private Block block;
     private Piece Piece;
-    private int marcador;
-//es cambiar para que se mueve en coordenadas el drop, poniendo coordenadas.y
-//es cambiar 
+
     public Board(int rows, int columns) {
     	this.tablero = new Piece[rows][columns];
         
@@ -47,9 +45,10 @@ si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
  * como poner las piezas que se corresponden al block que tenemos
  * como poner para que termine el juego (se lo pregunto antes a los compañeros)
  */
-public void canDrop(Block block, int x) {
+public boolean canDrop(Block block, int x) {
     int lengthBlock = block.columns();
     int maxY = tablero.length - block.rows();
+    boolean canDrop;
 
     if (canPlace(block, x, 0)) {
         int y = 0;
@@ -60,25 +59,30 @@ public void canDrop(Block block, int x) {
         }
 
         placeBlock(block, x, y - 1);
+        canDrop=true;
     } else {
+        canDrop=false;
         //No cabria en la possicion de y =0, por lo que pierdo.
     }
+    return canDrop;
 }
+
 
 //este metodo comprueba si se puede poner o no poner el bloque en ese sitio
 private boolean canPlace(Block block, int x, int y) {
+    boolean canPlace=true;
     for (int i = 0; i < block.rows(); i++) {
         for (int j = 0; j < block.columns(i); j++) {
             if (tablero[y + i][x + j] == Piece(color, sign)) {
-                return false; 
+                canPlace=false; 
             }
         }
     }
-    return true; 
+    return canPlace; 
 }
 
 private void placeBlock(Block block, int x, int y) {
-    for (int i = 0; i < block.rows(); i++) {
+    for (int i = 0; i < bloque.rows(); i++) {
         for (int j = 0; j < block.columns(i); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(color, sign);
@@ -89,30 +93,36 @@ private void placeBlock(Block block, int x, int y) {
 //acontinuacion los metodos para la eliminacion de las filas enteras de =! piece("  ")
  
     //general
-    public void checkAndDeleteRows() {
+    public int checkAndDeleteRows() {
+        int marcador;
         for (int i = tablero.length - 1; i >= 0; i--) {
             if (isRowEmpty(i)) {
                 deleteRow(i);
                 rowsDrops(i);
-                marcador++;
+                marcador=marcador+10;
             }
         }
+        return marcador;
     }
+
     //comprueba SI esta o NO esta llena alguna fila
     private boolean isRowEmpty(int row) {
+        boolean isRowEmpty=true;
         for (Piece Piece : tablero[row]) {
             if (Piece == null || Piece.equals(new Piece())) {
-                return false; // La fila no está llena
+                isRowEmpty = false; // La fila no está llena
             }
         }
-        return true; // La fila está llena
+        return isRowEmpty; // La fila está llena
     }
+
     //elimina una fila y las cambia por piezas vacias
     private void deleteRow(int row) {
         for (int i = 0; i < tablero[row].length; i++) {
             tablero[row][i] = new Piece(); // Reemplazar todas las piezas por Piece("  ")
         }
     }
+
     //drop de las filas superiores a la fila eliminada
     private void rowsDrops(int row) {
         for (int i = row-1; i >= 0; i--) {
