@@ -46,16 +46,20 @@ si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
  * como poner para que termine el juego (se lo pregunto antes a los compañeros)
  */
 public boolean canDrop(Block block, int x) {
+    //llamar a bolque.getX
     int lengthBlock = block.columns();
     int maxY = tablero.length - block.rows();
     boolean canDrop;
 
     if (canPlace(block, x, 0)) {
         int y = 0;
+        //llamar a bloque.getY
 
         // Mover hacia abajo hasta encontrar una posición válida
         while (y < maxY && canPlace(block, x, y + 1)) {
+            //cada vex que puede bajar llamar a block.bajarBloque y hacet y=getY()
             y++;
+            //
         }
 
         placeBlock(block, x, y - 1);
@@ -70,13 +74,20 @@ public boolean canDrop(Block block, int x) {
 
 //este metodo comprueba si se puede poner o no poner el bloque en ese sitio
 private boolean canPlace(Block block, int x, int y) {
+    //int x=block.getX()
+    //int y=block.getY()-1;
     boolean canPlace=true;
     for (int i = 0; i < block.rows(); i++) {
-        for (int j = 0; j < block.columns(i); j++) {
-            if (tablero[y + i][x + j] == Piece(color, sign)) {
-                canPlace=false; 
-            }
+        for (int j = 0; j < block.columns(); j++) {
+            //llamar a bloque.getElem(i,j)que devuelva el elemento en block[i][j]
+            //Comprobar si este elemento que devuelve getElem es ==1 y si lo es comprobar que la posicion donde lo quieres 
+            //colocar tiene una pieza vacia, si no la tiene devolver false
+            //if(board[x][y]!=vacia
+            //
+            //x++:
         }
+        //x=block.getX();
+        //y++;
     }
     return canPlace; 
 }
@@ -85,7 +96,7 @@ private void placeBlock(Block block, int x, int y) {
     for (int i = 0; i < block.rows(); i++) {
         for (int j = 0; j < block.columns(i); j++) {
             // Colocar el bloque en el tablero
-            tablero[y + i][x + j] = new Piece(color, sign);
+            tablero[y + i][x + j] = new Piece(block.getModelo());
         }
     }
 }    

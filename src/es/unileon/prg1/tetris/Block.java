@@ -2,14 +2,26 @@ package es.unileon.prg1.tetris;
 
 public class Block {
 
-    private ArrayMxN bloque = new ArrayMxN(2, 2);
-    private Coordenadas cor = new Coordenadas();
-    
+    private ArrayMxN bloque;
+    private Coordenadas cor;
+
+    private Piece modelo;
+    /*
+     * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board
+     * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY
+     * Crear método getModelo() que devuelva this.modelo
+     * Crar un metodo block.getElem(fila,col) para que devuelva el contenido de block[i][j] que es 1 o 0
+     * 
+     * 
+     */
     public Block(){
         bloque.set(0, 0, 1);
         bloque.set(0, 1, 1);
         bloque.set(1, 0, 1);
         bloque.set(1, 1, 1);
+        bloque = new ArrayMxN(2, 2);
+        cor = new Coordenadas();
+        this.modelo = new Piece(Color.YELLOW, "0");
     }
 
     public Coordenadas getCoordenadas(){

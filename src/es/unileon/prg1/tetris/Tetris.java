@@ -75,8 +75,7 @@ public class Tetris{
     public boolean drop() {
         boolean puede=false;
         int puntuacionObt=0;
-        int x=block.getX();
-        int y=block.getY();
+        
         puede=(board.canDrop(block,x));
         if(puede){
            puntuacionObt=board.checkAndDeleteRows();
