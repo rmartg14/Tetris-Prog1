@@ -47,8 +47,8 @@ si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
  */
 public boolean canDrop(Block block, int x) {
     //llamar a bolque.getX
-    int lengthBlock = block.columns();
-    int maxY = tablero.length - block.rows();
+    int lengthBlock = block.getColumnsBlock();
+    int maxY = tablero.length - block.getRowsBlock();
     boolean canDrop;
 
     if (canPlace(block, x, 0)) {
@@ -77,8 +77,8 @@ private boolean canPlace(Block block, int x, int y) {
     //int x=block.getX()
     //int y=block.getY()-1;
     boolean canPlace=true;
-    for (int i = 0; i < block.rows(); i++) {
-        for (int j = 0; j < block.columns(); j++) {
+    for (int i = 0; i < block.getRowsBlock(); i++) {
+        for (int j = 0; j < block.getColumnsBlock(); j++) {
             //llamar a bloque.getElem(i,j)que devuelva el elemento en block[i][j]
             //Comprobar si este elemento que devuelve getElem es ==1 y si lo es comprobar que la posicion donde lo quieres 
             //colocar tiene una pieza vacia, si no la tiene devolver false
@@ -93,8 +93,8 @@ private boolean canPlace(Block block, int x, int y) {
 }
 
 private void placeBlock(Block block, int x, int y) {
-    for (int i = 0; i < block.rows(); i++) {
-        for (int j = 0; j < block.columns(i); j++) {
+    for (int i = 0; i < block.getRowsBlock(); i++) {
+        for (int j = 0; j < block.getColumnsBlock(); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(block.getModelo());
         }

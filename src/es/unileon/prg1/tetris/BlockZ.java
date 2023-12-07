@@ -10,7 +10,7 @@ public class BlockZ extends Block{
         blockZ.set(0, 2, 0);
         blockZ.set(1, 0, 0);
         blockZ.set(1, 1, 1);
-        blockZ.set(1, 3, 1);
+        blockZ.set(1, 2, 1);
         this.modelo = new Piece(Color.GREEN, "Z");
     }
     

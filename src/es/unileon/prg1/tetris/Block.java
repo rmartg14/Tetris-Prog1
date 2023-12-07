@@ -7,26 +7,44 @@ public class Block {
 
     private Piece modelo;
     /*
-     * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board
-     * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY
-     * Crear método getModelo() que devuelva this.modelo
-     * Crar un metodo block.getElem(fila,col) para que devuelva el contenido de block[i][j] que es 1 o 0
+     * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board-----Done
+     * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY-----Done
+     * Crear método getModelo() que devuelva this.modelo----------Done
+     * Crar un metodo block.getElem(fila,col) para que devuelva el contenido de block[i][j] que es 1 o 0--------Done
      * 
      * 
      */
     public Block(){
+        bloque = new ArrayMxN(2, 2);
         bloque.set(0, 0, 1);
         bloque.set(0, 1, 1);
         bloque.set(1, 0, 1);
         bloque.set(1, 1, 1);
-        bloque = new ArrayMxN(2, 2);
+        
         cor = new Coordenadas();
         this.modelo = new Piece(Color.YELLOW, "0");
+    }
+
+    public Piece getModelo(){
+        return this.modelo;
+    }
+
+    public int getElem(int row, int col){
+        return bloque.get(row, col);
     }
 
     public Coordenadas getCoordenadas(){
         return cor;
     }
+
+    public int getX(){
+        return cor.getX();
+    }
+
+    public int getY(){
+        return cor.getY();
+    }
+
     public int getColumnsBlock(){
         return bloque.columns();
     }
@@ -35,6 +53,10 @@ public class Block {
         return bloque.rows();
     }
     
+    public void bajarBloque(){
+        cor.dropOne();
+    }
+
     public void rotateLeft(){
         int mayorL = 0;
         if (bloque.rows() < bloque.columns()) {
@@ -93,11 +115,7 @@ public class Block {
     }
 
     public void moveRight(){
-        Board t = new Board(0, 0);
-        
-        if (cor.getX() + bloque.columns() < t.getNumberOfColumns()) {
-            cor.moverDerecha();
-        }
+        cor.moverDerecha();
     }
 
     @Override
