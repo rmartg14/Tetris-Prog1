@@ -43,12 +43,10 @@ si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
 
 public boolean canDrop(Block block) {
     boolean canDrop = true;
-    int lengthBlock = block.getColumnsBlock();
-    int maxY = tablero.length - block.getRowsBlock();
-
+    Piece pieza=new Piece();
     if (canPlace(block)) {
         int x = block.getX();
-        int y = block.getY() - 1;
+        int y = block.getY();
 
         for (int i = 0; i < block.getRowsBlock(); i++) {
             for (int j = 0; j < block.getColumnsBlock(); j++) {
@@ -56,8 +54,8 @@ public boolean canDrop(Block block) {
                 //comprobamos si el elemento es 1 o 0
                 if (elem == 1) {
                     if (x + i >= 0 && x + i < tablero[0].length && y + j >= 0 && y + j < tablero.length) {
-                        if (tablero[y + j][x + i] != null) {
-                            // If not empty, return false (cannot drop the block)
+                        if (tablero[y + j][x + i] != pieza) {
+                            //si no es pieza, devolver falso
                             canDrop = false;
                         }
                     } else {
@@ -69,6 +67,7 @@ public boolean canDrop(Block block) {
         }
 
         canDrop = true;
+        placeBlock(block);
     }
 
     return canDrop;
@@ -77,7 +76,7 @@ public boolean canDrop(Block block) {
 //este metodo comprueba si se puede poner o no poner el bloque en ese sitio
 private boolean canPlace(Block block) {
     int x = block.getX();
-    int y = block.getY()-1;
+    int y = block.getY();
     Piece pieza=new Piece();
     boolean canPlace=true;
     for (int i = 0; i < block.getRowsBlock(); i++) {
@@ -95,7 +94,6 @@ private void placeBlock(Block block) {
     int x = block.getX();
     int y = block.getY(); 
     for (int i = 0; i < block.getRowsBlock(); i++) {
-        //for (int j = 0; j < block.columns(i); j++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(block.getModelo());
@@ -106,7 +104,7 @@ private void placeBlock(Block block) {
 //acontinuacion los metodos para la eliminacion de las filas enteras de =! piece("  ")
  
     //general
-    public int checkAndDeleteRows() {
+    public int checkAndDeleteRows(){
         int marcador = 0;
         for (int i = tablero.length - 1; i >= 0; i--) {
             if (isRowEmpty(i)) {
@@ -149,11 +147,10 @@ private void placeBlock(Block block) {
 
 public String toString() {
     StringBuilder result = new StringBuilder();
-    /*PRGUNTA
-     * | para todo y en x=-1 y para tablero[0].length+1
-     * __para todo x entre x=-1 y tablero[0].length+1 en y=tablero.length
-     */
-  
+    /*tengo que imprimir el tablero,   todo lo que conlleva 
+    es decir | +mas todos los estados que haya dentro del tabero |
+    asi hasta la ultima fila donde la sguiente será en toda la fila ____________
+    */
     return result.toString();
 }
 
