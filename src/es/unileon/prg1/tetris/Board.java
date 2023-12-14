@@ -40,60 +40,61 @@ cuando se sabe donde esta el bloque, se genera
 si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
 */
 
- 
-/* DUDAS
- * como poner las piezas que se corresponden al block que tenemos
- * como poner para que termine el juego (se lo pregunto antes a los compañeros)
- */
-public boolean canDrop(Block block, int x) {
-    //llamar a bolque.getX
+
+public boolean canDrop(Block block) {
+    boolean canDrop = true;
     int lengthBlock = block.getColumnsBlock();
     int maxY = tablero.length - block.getRowsBlock();
-    boolean canDrop;
 
-    if (canPlace(block, x, 0)) {
-        int y = 0;
-        //llamar a bloque.getY
+    if (canPlace(block)) {
+        int x = block.getX();
+        int y = block.getY() - 1;
 
-        // Mover hacia abajo hasta encontrar una posición válida
-        while (y < maxY && canPlace(block, x, y + 1)) {
-            //cada vex que puede bajar llamar a block.bajarBloque y hacet y=getY()
-            y++;
-            //
+        for (int i = 0; i < block.getRowsBlock(); i++) {
+            for (int j = 0; j < block.getColumnsBlock(); j++) {
+                int elem = block.getElem(i, j);
+                //comprobamos si el elemento es 1 o 0
+                if (elem == 1) {
+                    if (x + i >= 0 && x + i < tablero[0].length && y + j >= 0 && y + j < tablero.length) {
+                        if (tablero[y + j][x + i] != null) {
+                            // If not empty, return false (cannot drop the block)
+                            canDrop = false;
+                        }
+                    } else {
+                        
+                        canDrop = false;
+                    }
+                }
+            }
         }
 
-        placeBlock(block, x, y - 1);
-        canDrop=true;
-    } else {
-        canDrop=false;
-        //No cabria en la possicion de y =0, por lo que pierdo.
+        canDrop = true;
     }
+
     return canDrop;
 }
-
-
+        
 //este metodo comprueba si se puede poner o no poner el bloque en ese sitio
-private boolean canPlace(Block block, int x, int y) {
-    //int x=block.getX()
-    //int y=block.getY()-1;
+private boolean canPlace(Block block) {
+    int x = block.getX();
+    int y = block.getY();
     boolean canPlace=true;
     for (int i = 0; i < block.getRowsBlock(); i++) {
+        //for (int j = 0; j < block.columns(i); j++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
-            //llamar a bloque.getElem(i,j)que devuelva el elemento en block[i][j]
-            //Comprobar si este elemento que devuelve getElem es ==1 y si lo es comprobar que la posicion donde lo quieres 
-            //colocar tiene una pieza vacia, si no la tiene devolver false
-            //if(board[x][y]!=vacia
-            //
-            //x++:
+            if (tablero[y + i][x + j] == Piece(block.getModelo())) {
+                canPlace=false; 
+            }
         }
-        //x=block.getX();
-        //y++;
     }
     return canPlace; 
 }
 
-private void placeBlock(Block block, int x, int y) {
+private void placeBlock(Block block) {
+    int x = block.getX();
+    int y = block.getY(); 
     for (int i = 0; i < block.getRowsBlock(); i++) {
+        //for (int j = 0; j < block.columns(i); j++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
             // Colocar el bloque en el tablero
             tablero[y + i][x + j] = new Piece(block.getModelo());
@@ -142,12 +143,22 @@ private void placeBlock(Block block, int x, int y) {
             }
         }
     }
+//tengo muchas dudas acerca el toString, no se si esta bien
+
+public String toString() {
+    StringBuilder result = new StringBuilder();
+    /*PRGUNTA
+     * | para todo y en x=-1 y para tablero[0].length+1
+     * __para todo x entre x=-1 y tablero[0].length+1 en y=tablero.length
+     */
+  
+    return result.toString();
+}
+
 }
 
 
-
 /*
-
 Board se basa en dos  operaciones importantes:
 Los metodos necesarios para crear el drop, de forma "temporal" de las piezas donde se va mirando si la el blocke cabe en la siguiente fila,
 así hasta que llegue a tocar piezas, donde se pone de forma "real" el bloque en cuestion.
