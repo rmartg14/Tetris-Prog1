@@ -130,6 +130,12 @@ public class Block {
                 
             }
         }
+        if (cor.getX() - bloque.rows() < 0) {
+            int moves = (cor.getX() - bloque.rows())*(-1);
+            for (int i = 0; i < moves; i++) {
+                cor.setX(cor.getX() + 1);
+            }
+        }
         blockN.spinLeft();
         blockN.getMinArray();
         for (int i = 0; i < blockN.rows(); i++) {
@@ -145,7 +151,7 @@ public class Block {
 	 * Convierte el bloque actual en un array NxN para poder llamar a spinRight de 
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
 	 */
-    public void rotateRight(){
+    public void rotateRight(int columnas){
         int mayorL = 0;
         if (bloque.rows() < bloque.columns()) {
             mayorL = bloque.columns();
@@ -163,9 +169,19 @@ public class Block {
                 
             }
         }
+        if (bloque.rows() + cor.getX() >= columnas) {
+            int moves = (bloque.rows() + cor.getX()) - columnas + 1;
+            for (int i = 0; i < moves; i++) {
+                cor.setX(cor.getX() - 1);
+            }
+        }
         blockN.spinRight();
         blockN.getMinArray();
-        bloque = blockN;
+        for (int i = 0; i < blockN.rows(); i++) {
+            for (int j = 0; j < blockN.columns(); j++) {
+                bloque.set(i, j, blockN.get(i, j));
+            }
+        }
     }
 
     /**
