@@ -104,7 +104,7 @@ public class Tetris{
         boolean puede=false;
         int puntuacionObt=0;
         
-        puede=(board.canDrop(block,x));
+        puede=(board.canDrop(block));
         if(puede){
            puntuacionObt=board.checkAndDeleteRows();
            points+=puntuacionObt;
