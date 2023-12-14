@@ -38,7 +38,7 @@ public class Block {
         bloque.set(1, 1, 1);
         
         cor = new Coordenadas();
-        this.modelo = new Piece(Color.YELLOW, "0");
+        this.modelo = new Piece(Color.YELLOW, "O");
     }
 
     /**
@@ -180,8 +180,10 @@ public class Block {
     /**
 	 * Suma 1 a la coordenada x
 	 */
-    public void moveRight(){
-        cor.moverDerecha();
+    public void moveRight(int columnas){
+        if (cor.getX() + bloque.columns() < columnas){
+            cor.moverDerecha();
+        }  
     }
     /*
      * Devuelve un String del bloque creado
@@ -195,7 +197,13 @@ public class Block {
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < bloque.rows(); i++) {
             for (int j = 0; j < bloque.columns(); j++) {
-                stringBuffer.append(bloque.get(i, j));
+                if (bloque.get(i, j) == 1) {
+                    stringBuffer.append(this.modelo.toString());
+                } else {
+                    Piece p = new Piece();
+                    stringBuffer.append(p.toString());
+                }
+                
             }
             stringBuffer.append("\n");
         }
