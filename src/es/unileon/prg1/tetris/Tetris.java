@@ -77,9 +77,8 @@ public class Tetris{
      * Este método mueve el bloque a la izquierda
      */
     public void moveLeft() {
-        if(block.getX()>0){
             block.moveLeft();
-        }
+        
         
     }
 
@@ -120,7 +119,8 @@ public class Tetris{
      * Este método rota el bloque a la derecha
      */
     public void spinRight() {
-        block.rotateRight();
+        int colBloque=board.getNumberOfColumns();
+        block.rotateRight(colBloque);
     }
 
     /**
