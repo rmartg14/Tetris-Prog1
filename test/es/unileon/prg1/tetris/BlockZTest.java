@@ -15,6 +15,6 @@ public class BlockZTest {
 
     @Test
     public void blockZTest(){
-        assertEquals("110\n" + "011\n", blockZ.toString());
+        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
     }
 }

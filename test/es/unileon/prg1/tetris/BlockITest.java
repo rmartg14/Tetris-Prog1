@@ -14,6 +14,6 @@ public class BlockITest {
 
     @Test
     public void blockITest(){
-        assertEquals("1\n" + "1\n" + "1\n" + "1\n", blockI.toString());
+        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
     }
 }

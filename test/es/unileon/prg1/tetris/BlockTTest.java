@@ -15,6 +15,6 @@ public class BlockTTest {
 
     @Test
     public void blockTTest(){
-        assertEquals("111\n" + "010\n", blockT.toString());
+        assertEquals("T T T \n" + "  T   \n", blockT.toString());
     }
 }
