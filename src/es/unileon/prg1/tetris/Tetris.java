@@ -127,9 +127,10 @@ public class Tetris{
      * Este método mueve el bloque a la derecha
      */
     public void moveRigth() {
-        if(block.getX()+block.getColumnsBlock()<board.getNumberOfColumns()){
-            block.moveRight();
-        }
+        
+            int colBloque=board.getNumberOfColumns();
+            block.moveRight(colBloque);
+        
         
 
     }
