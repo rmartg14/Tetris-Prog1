@@ -13,11 +13,11 @@ package es.unileon.prg1.tetris;
 
 public class Block {
     /** Atributo de una matriz de 1s y 0s a la que se delegan muchas operaciones de la clase.*/
-    private ArrayMxN bloque;
+    protected ArrayMxN bloque;
     /** Atributo para acceder a las coordenadas actuales del bloque */
-    private Coordenadas cor;
+    protected Coordenadas cor;
     /** Atributo para acceder al tipo de piezas que va a utilizar el bloque.*/
-    private Piece modelo;
+    protected Piece modelo;
     /*
      * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board-----Done
      * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY-----Done
