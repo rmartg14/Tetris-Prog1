@@ -77,12 +77,13 @@ public boolean canDrop(Block block) {
 //este metodo comprueba si se puede poner o no poner el bloque en ese sitio
 private boolean canPlace(Block block) {
     int x = block.getX();
-    int y = block.getY();
+    int y = block.getY()-1;
+    Piece pieza=new Piece();
     boolean canPlace=true;
     for (int i = 0; i < block.getRowsBlock(); i++) {
         //for (int j = 0; j < block.columns(i); j++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
-            if (tablero[y + i][x + j] == Piece(block.getModelo())) {
+            if (tablero[y + i][x + j] != pieza) {
                 canPlace=false; 
             }
         }
@@ -119,9 +120,10 @@ private void placeBlock(Block block) {
 
     //comprueba SI esta o NO esta llena alguna fila
     private boolean isRowEmpty(int row) {
+        Piece pieza=new Piece();
         boolean isRowEmpty=true;
         for (Piece Piece : tablero[row]) {
-            if (Piece == null || Piece.equals(new Piece())) {
+            if (Piece == pieza ) {
                 isRowEmpty = false; // La fila no está llena
             }
         }
