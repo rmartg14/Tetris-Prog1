@@ -140,10 +140,13 @@ public class BoardTest {
     }
 
     @Test
-    public void testDropCuadrado1()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 1));
-        assertTrue(board2.canDrop(new Block(), 1));
-        assertTrue(board3.canDrop(new Block(), 1));
+    public void testDrop1()throws TetrisException{
+        blockC.moveRight(board1.getNumberOfColumns());
+        assertTrue(board1.canDrop(blockC));
+        blockS.moveRight(board2.getNumberOfColumns());
+        assertTrue(board2.canDrop(blockS));
+        blockT.moveRight(board3.getNumberOfColumns());
+        assertTrue(board3.canDrop(blockT));
         
         assertEquals("│            │\n" + //
                      "│            │\n" + //
@@ -161,8 +164,8 @@ public class BoardTest {
                      "│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
-                     "│  O O               │\n" + //
-                     "│  O O               │\n" + //
+                     "│    S S             │\n" + //
+                     "│  S S               │\n" + //
                      "└────────────────────┘\n"   //
                      
                      , this.board2.toString());
@@ -173,8 +176,8 @@ public class BoardTest {
                      "│                │\n" + //
                      "│                │\n" + //
                      "│                │\n" + //
-                     "│  O O           │\n" + //
-                     "│  O O           │\n" + //
+                     "│  T T T         │\n" + //
+                     "│    T           │\n" + //
                      "└────────────────┘\n"   //
                      
                      , this.board3.toString());
@@ -183,15 +186,21 @@ public class BoardTest {
     }
     @Test
     public void testDropCuadrado2()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 2));
-        assertTrue(board2.canDrop(new Block(), 2));
-        assertTrue(board3.canDrop(new Block(), 2));
+        blockZ.moveRight(board1.getNumberOfColumns());
+        blockZ.moveRight(board1.getNumberOfColumns());
+        assertTrue(board1.canDrop(blockZ));
+        blockJ.moveRight(board2.getNumberOfColumns());
+        blockJ.moveRight(board2.getNumberOfColumns());
+        assertTrue(board2.canDrop(blockJ));
+        blockL.moveRight(board3.getNumberOfColumns());
+        blockL.moveRight(board3.getNumberOfColumns());
+        assertTrue(board3.canDrop(blockL));
         
         assertEquals("│            │\n" + //
                      "│            │\n" + //
                      "│            │\n" + //
-                     "│    O O     │\n" + //
-                     "│    O O     │\n" + //
+                     "│    Z Z     │\n" + //
+                     "│      Z Z   │\n" + //
                      "└────────────┘\n"    //
                      ,this.board1.toString());
                      
@@ -202,9 +211,9 @@ public class BoardTest {
                      "│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│    O O             │\n" + //
-                     "│    O O             │\n" + //
+                     "│      J             │\n" + //
+                     "│      J             │\n" + //
+                     "│    J J             │\n" + //
                      "└────────────────────┘\n"   //
                      
                      , this.board2.toString());
@@ -214,9 +223,9 @@ public class BoardTest {
                      "│                │\n" + //
                      "│                │\n" + //
                      "│                │\n" + //
-                     "│                │\n" + //
-                     "│    O O         │\n" + //
-                     "│    O O         │\n" + //
+                     "│    L           │\n" + //
+                     "│    L           │\n" + //
+                     "│    L L         │\n" + //
                      "└────────────────┘\n"   //
                      
                      , this.board3.toString());
@@ -225,19 +234,28 @@ public class BoardTest {
     }
     @Test
     public void testDropCuadrado5()throws TetrisException{
-        assertFalse(board1.canDrop(new Block(), 5));
-        assertTrue(board2.canDrop(new Block(), 5));
-        assertTrue(board3.canDrop(new Block(), 5));             
+        blockI.moveRight(board2.getNumberOfColumns());
+        blockI.moveRight(board2.getNumberOfColumns());
+        blockI.moveRight(board2.getNumberOfColumns());
+        blockI.moveRight(board2.getNumberOfColumns());
+        blockI.moveRight(board2.getNumberOfColumns());
+        assertTrue(board2.canDrop(blockI));
+        blockC.moveRight(board3.getNumberOfColumns());
+        blockC.moveRight(board3.getNumberOfColumns());
+        blockC.moveRight(board3.getNumberOfColumns());
+        blockC.moveRight(board3.getNumberOfColumns());
+        blockC.moveRight(board3.getNumberOfColumns());
+        assertTrue(board3.canDrop(blockC));             
         assertEquals("│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
                      "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│          O O       │\n" + //
-                     "│          O O       │\n" + //
+                     "│          I         │\n" + //
+                     "│          I         │\n" + //
+                     "│          I         │\n" + //
+                     "│          I         │\n" + //
                      "└────────────────────┘\n"   //
                      
                      , this.board2.toString());
@@ -256,33 +274,12 @@ public class BoardTest {
         
 
     }
-    @Test
-    public void testDropCuadrado7()throws TetrisException{
-        assertFalse(board1.canDrop(new Block(), 7));
-        assertTrue(board2.canDrop(new Block(), 7));
-        assertFalse(board3.canDrop(new Block(), 7));             
-        assertEquals("│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│                    │\n" + //
-                     "│              O O   │\n" + //
-                     "│              O O   │\n" + //
-                     "└────────────────────┘\n"   //
-                     
-                     , this.board2.toString());
-
-        
-
-    }
+   
     @Test
     public void testDropFallo1()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 1));
-        assertTrue(board1.canDrop(new Block(), 3));
-        assertTrue(board1.canDrop(new Block(), 0));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
         
          assertEquals("│            │\n" + //
                       "│O O         │\n" + //
@@ -292,8 +289,8 @@ public class BoardTest {
                       "└────────────┘\n"   //
                      ,this.board1.toString());
         
-        assertFalse(board1.canDrop(new Block(), 1));
-        assertFalse(board1.canDrop(new Block(), 0));
+        assertFalse(board1.canDrop(new Block()));
+        assertFalse(board1.canDrop(new Block()));
 
                   
        
@@ -305,9 +302,9 @@ public class BoardTest {
     }
     @Test
     public void testFilasFallo1()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 1));
-        assertTrue(board1.canDrop(new Block(), 3));
-        assertTrue(board1.canDrop(new Block(), 4));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
         assertEquals(board1.checkAndDeleteRows(),0);
 
          assertEquals("│            │\n" + //
@@ -322,9 +319,9 @@ public class BoardTest {
     }
     @Test
     public void testElimFilasAcierto()throws TetrisException{
-        assertTrue(board1.canDrop(new Block(), 0));
-        assertTrue(board1.canDrop(new Block(), 2));
-        assertTrue(board1.canDrop(new Block(), 4));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
+        assertTrue(board1.canDrop(new Block()));
 
          assertEquals("│            │\n" + //
                       "│            │\n" + //
@@ -348,5 +345,3 @@ public class BoardTest {
 
 }
 
-//DUDAS: COMO SABER SI VIENE GIRADO EL BLOQUE O NO
-//DECIRLE A MARIO QUE COMPRUEBE QUE LA X ES POSITIVA Y NO SE SALE DEL TABLERO
