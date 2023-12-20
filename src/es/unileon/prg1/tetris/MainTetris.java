@@ -25,19 +25,16 @@ public class MainTetris {
 			} catch (NumberFormatException e) {
 				System.out.println("Error: columnas no válidas.");
 			} 
-			try {
+			
 				color = args[2];
-			} catch (ArrayIndexOutOfBoundsException e) {
-
-				System.out.println("Error: argumento inválido para el color.");
-			}
+			
 	
 			try {
 				tetris = new Tetris(rows, columns, color);
 				ui = new TetrisTextUI(tetris);
 				ui.init();
 			} catch (TetrisException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			
 
