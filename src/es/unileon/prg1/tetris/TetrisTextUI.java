@@ -16,7 +16,7 @@ public class TetrisTextUI{
             System.out.println("W-> GIRAR A LA IZQUIERDA");
             System.out.println("E-> GIRAR A LA DERECHA");
             System.out.println("A-> MOVER A LA IZQUIERDA");
-            System.out.println("D-> MOVER A LA IZQUIERDA");
+            System.out.println("D-> MOVER A LA DERECHA");
             System.out.println("S-> BAJAR PIEZA");
             System.out.println("Exit->Salir");
             try{

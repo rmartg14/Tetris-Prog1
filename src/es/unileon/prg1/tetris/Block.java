@@ -192,7 +192,7 @@ public class Block {
             cor.moverIzquierda();
         }
     }
-
+//lanzar excepcion si no se puede mover mas
     /**
 	 * Suma 1 a la coordenada x
 	 */
@@ -211,12 +211,16 @@ public class Block {
     @Override
     public String toString(){
         StringBuffer stringBuffer = new StringBuffer();
+        Piece p = new Piece();
+        for(int i=0;i<cor.getX();i++){
+            stringBuffer.append(p.toString());
+        }
         for (int i = 0; i < bloque.rows(); i++) {
             for (int j = 0; j < bloque.columns(); j++) {
                 if (bloque.get(i, j) == 1) {
                     stringBuffer.append(this.modelo.toString());
                 } else {
-                    Piece p = new Piece();
+                    
                     stringBuffer.append(p.toString());
                 }
                 
