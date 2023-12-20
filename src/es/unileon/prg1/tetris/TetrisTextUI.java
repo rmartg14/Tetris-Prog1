@@ -33,7 +33,7 @@ public class TetrisTextUI{
                     break;
                 case "S":juego.drop();
                     break;
-                case "SALIR":end=true;
+                case "EXIT":end=true;
                     break;
 
             }
