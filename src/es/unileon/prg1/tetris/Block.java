@@ -210,23 +210,26 @@ public class Block {
      */
     @Override
     public String toString(){
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer output = new StringBuffer();
         Piece p = new Piece();
-        for(int i=0;i<cor.getX();i++){
-            stringBuffer.append(p.toString());
-        }
+       
+        
         for (int i = 0; i < bloque.rows(); i++) {
+            for(int k=0;k<cor.getX();k++){
+                output.append(p.toString());
+            }
             for (int j = 0; j < bloque.columns(); j++) {
+                
                 if (bloque.get(i, j) == 1) {
-                    stringBuffer.append(this.modelo.toString());
+                    output.append(this.modelo.toString());
                 } else {
                     
-                    stringBuffer.append(p.toString());
+                    output.append(p.toString());
                 }
                 
             }
-            stringBuffer.append("\n");
+            output.append("\n");
         }
-        return stringBuffer.toString(); 
+        return output.toString(); 
     }
 }

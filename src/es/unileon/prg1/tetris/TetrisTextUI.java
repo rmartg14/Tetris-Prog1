@@ -1,16 +1,16 @@
 package es.unileon.prg1.tetris;
 
-
-
-public class TetrisTextUI{
+public class TetrisTextUI {
     private Tetris juego;
-    public TetrisTextUI(Tetris tetris){
-        this.juego=tetris;
+
+    public TetrisTextUI(Tetris tetris) {
+        this.juego = tetris;
     }
+
     public void init() {
-        boolean end=false;
-        String entrada="";
-        do{
+        boolean end = false;
+        String entrada = "";
+        do {
             System.out.println("TETRIS");
             System.out.println(juego.toString());
             System.out.println("W-> GIRAR A LA IZQUIERDA");
@@ -19,39 +19,47 @@ public class TetrisTextUI{
             System.out.println("D-> MOVER A LA DERECHA");
             System.out.println("S-> BAJAR PIEZA");
             System.out.println("Exit->Salir");
-            try{
-                entrada=introduceTeclado();
-            }catch(TetrisException e){}
-            switch(entrada){
-                case "W":juego.spinLeft();
-                    break;
-                case "E":juego.spinRight();
-                    break;
-                case "A":juego.moveLeft();
-                    break;
-                case "D":juego.moveRigth();
-                    break;
-                case "S":juego.drop();
-                    break;
-                case "EXIT":end=true;
-                    break;
+            try {
+                entrada = introduceTeclado();
+                switch (entrada) {
+                    case "W":
+                        juego.spinLeft();
+                        break;
+                    case "E":
+                        juego.spinRight();
+                        break;
+                    case "A":
+                        juego.moveLeft();
+                        break;
+                    case "D":
+                        juego.moveRigth();
+                        break;
+                    case "S":
+                        juego.drop();
+                        break;
+                    case "EXIT":
+                        end = true;
+                        break;
 
+                }
+                if (juego.perder()) {
+                    end = true;
+                }
+            } catch (TetrisException e) {
+                System.out.println(e.getMessage());
             }
-            if(juego.perder()){
-                end=true;
-            }
-        }while(!end);
+
+        } while (!end);
     }
-    public String introduceTeclado() throws TetrisException{
-        String introducido;
-        introducido=Keyboard.readString();
-        introducido.toUpperCase();
-        if(introducido!="W"&&introducido!="E"&&introducido!="A"&&introducido!="S"&&introducido!="D"&&introducido!="EXIT"){
+
+    public String introduceTeclado() throws TetrisException {
+        String in;
+        in = Keyboard.readString().trim().toUpperCase();
+        if (!in.equals("W") && !in.equals("E") && !in.equals("A") && !in.equals("S") && !in.equals("D") && !in.equals("EXIT")) {
             throw new TetrisException("Error: La entrada introducida es erronea ");
         }
 
-        return introducido;
+        return in;
     }
 
-    
 }
