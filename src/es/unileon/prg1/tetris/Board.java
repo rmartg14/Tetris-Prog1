@@ -13,14 +13,13 @@ public class Board {
 
     public Board(int rows, int columns) {
     	this.tablero = new Piece[rows][columns];
-        
+        this.iniciarTablero();
     }
     //creacion de una iniciacion del tablero con todo 0's
-    public void iniciarTablero(){
-        Piece emptyPiece= new Piece();
+    private void iniciarTablero(){
         for(int i=0; i<tablero.length;i++){
             for (int j=0; j<tablero[0].length; j++){
-                tablero[i][j]=emptyPiece;
+                tablero[i][j]=new Piece();
             }
         }
     }
@@ -48,7 +47,7 @@ si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
 
 public boolean canDrop(Block block) {
     boolean canDrop = true;
-    Piece pieza=new Piece();
+    
     if (canPlace(block)) {
         int x = block.getX();
         int y = block.getY();
@@ -83,7 +82,6 @@ public boolean canDrop(Block block) {
 private boolean canPlace(Block block) {
     int x = block.getX();
     int y = block.getY();
-    Piece pieza=new Piece();
     boolean canPlace=true;
     for (int i = 0; i < block.getRowsBlock(); i++) {
         //for (int j = 0; j < block.columns(i); j++) {
@@ -170,7 +168,7 @@ public String toString() {
            
     }
         result.append("\u2514");    
-        for (int j=0; j<tablero.length*2; j++){
+        for (int j=0; j<tablero.length+2; j++){
             result.append("\u2500");
         }      
         result.append("\u2518");  

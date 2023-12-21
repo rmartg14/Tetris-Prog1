@@ -42,9 +42,9 @@ public class TetrisTextUI {
                         break;
 
                 }
-                if (juego.perder()) {
-                    end = true;
-                }
+                // if (juego.perder()) {
+                //     end = true;
+                // }
             } catch (TetrisException e) {
                 System.out.println(e.getMessage());
             }

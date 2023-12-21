@@ -113,37 +113,9 @@ public class Block {
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
 	 */
     public void rotateLeft(){
-        int mayorL = 0;
-        if (bloque.rows() < bloque.columns()) {
-            mayorL = bloque.columns();
-        } else {
-            mayorL = bloque.rows();
-        }
-        ArrayNxN blockN = new ArrayNxN(mayorL);
-        for (int i = 0; i < blockN.rows(); i++) {
-            for (int j = 0; j < blockN.columns(); j++) {
-                if (bloque.get(i, j) != 0) {
-                    blockN.set(i, j, bloque.get(i, j));  
-                } else {
-                    blockN.set(i, j, 0);
-                }
-                
-            }
-        }
-        if (cor.getX() - bloque.rows() < 0) {
-            int moves = (cor.getX() - bloque.rows())*(-1);
-            for (int i = 0; i < moves; i++) {
-                cor.setX(cor.getX() + 1);
-            }
-        }
-        blockN.spinLeft();
-        blockN.getMinArray();
-        for (int i = 0; i < blockN.rows(); i++) {
-            for (int j = 0; j < blockN.columns(); j++) {
-                bloque.set(i, j, blockN.get(i, j));
-            }
-        }
-        
+        ArrayNxN array=new ArrayNxN(this.bloque);
+        array=array.spinLeft();
+        this.bloque=array.getMinArray();
     }
     /**
      * Rota el bloque hacia la derecha
@@ -152,36 +124,11 @@ public class Block {
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
 	 */
     public void rotateRight(int columnas){
-        int mayorL = 0;
-        if (bloque.rows() < bloque.columns()) {
-            mayorL = bloque.columns();
-        } else {
-            mayorL = bloque.rows();
-        }
-        ArrayNxN blockN = new ArrayNxN(mayorL);
-        for (int i = 0; i < blockN.rows(); i++) {
-            for (int j = 0; j < blockN.columns(); j++) {
-                if (bloque.get(i, j) != 0) {
-                    blockN.set(i, j, bloque.get(i, j));  
-                } else {
-                    blockN.set(i, j, 0);
-                }
-                
-            }
-        }
-        if (bloque.rows() + cor.getX() >= columnas) {
-            int moves = (bloque.rows() + cor.getX()) - columnas + 1;
-            for (int i = 0; i < moves; i++) {
-                cor.setX(cor.getX() - 1);
-            }
-        }
-        blockN.spinRight();
-        blockN.getMinArray();
-        for (int i = 0; i < blockN.rows(); i++) {
-            for (int j = 0; j < blockN.columns(); j++) {
-                bloque.set(i, j, blockN.get(i, j));
-            }
-        }
+        ArrayNxN array=new ArrayNxN(this.bloque);
+        array=array.spinRight();
+        this.bloque=array.getMinArray();
+
+        //COMPROBAR SI ME HE SALIDO. SI ME HE SALIDO, RESTAR TANTOS COMO SEA NECESARIO PARA VOLVER A ENTRAR
     }
 
     /**
