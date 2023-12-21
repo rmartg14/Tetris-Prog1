@@ -58,7 +58,7 @@ public boolean canDrop(Block block) {
                 //comprobamos si el elemento es 1 o 0
                 if (elem == 1) {
                     if (y + j < tablero.length) {
-                        if (tablero[y + j][x + i] != pieza) {
+                        if (!tablero[y + j][x + i].isEmpty()) {
                             //si no es pieza, devolver falso
                             canDrop = false;
                         }
@@ -89,7 +89,7 @@ private boolean canPlace(Block block) {
             int elem = block.getElem(i, j);
                 //comprobamos si el elemento es 1 o 0
             if (elem == 1) {
-                if (tablero[y + i][x + j] != pieza) {
+                if (!tablero[y + i][x + j].isEmpty()) {
                     canPlace=false; 
                 }
             }
@@ -104,8 +104,11 @@ private void placeBlock(Block block) {
     Piece modelo = new Piece(block.getModelo());
     for (int i = 0; i < block.getRowsBlock(); i++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
+            int elem= block.getElem(i, j);
             // Colocar el bloque en el tablero
-            tablero[y + i][x + j] = modelo;
+            if (elem == 1) {
+                tablero[y + i][x + j] = modelo;
+            }
         }
     }
 }    
