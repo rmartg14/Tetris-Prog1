@@ -8,7 +8,7 @@ public class TetrisTextUI {
     }
 
     public void init() {
-        boolean end = false;
+        boolean end = true;
         String entrada = "";
         do {
             System.out.println("TETRIS");
@@ -35,16 +35,14 @@ public class TetrisTextUI {
                         juego.moveRigth();
                         break;
                     case "S":
-                        juego.drop();
+                        end=juego.drop();
                         break;
                     case "EXIT":
-                        end = true;
+                        end = false;
                         break;
 
                 }
-                // if (juego.perder()) {
-                //     end = true;
-                // }
+                
             } catch (TetrisException e) {
                 System.out.println(e.getMessage());
             }
