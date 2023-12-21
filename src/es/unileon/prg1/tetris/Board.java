@@ -1,5 +1,10 @@
 package es.unileon.prg1.tetris;
 
+/*Hacer que el toString para:
+    imprima todo el el tablero con todo lo que contiene cada fila
+   
+    */
+
 public class Board {
 
     private Piece[][] tablero;
@@ -53,7 +58,7 @@ public boolean canDrop(Block block) {
                 int elem = block.getElem(i, j);
                 //comprobamos si el elemento es 1 o 0
                 if (elem == 1) {
-                    if (x + i >= 0 && x + i < tablero[0].length && y + j >= 0 && y + j < tablero.length) {
+                    if (y + j < tablero.length) {
                         if (tablero[y + j][x + i] != pieza) {
                             //si no es pieza, devolver falso
                             canDrop = false;
@@ -65,9 +70,10 @@ public boolean canDrop(Block block) {
                 }
             }
         }
-
-        canDrop = true;
-        placeBlock(block);
+        if(canDrop){
+            placeBlock(block);
+        }
+    
     }
 
     return canDrop;
@@ -82,8 +88,12 @@ private boolean canPlace(Block block) {
     for (int i = 0; i < block.getRowsBlock(); i++) {
         //for (int j = 0; j < block.columns(i); j++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
-            if (tablero[y + i][x + j] != pieza) {
-                canPlace=false; 
+            int elem = block.getElem(i, j);
+                //comprobamos si el elemento es 1 o 0
+            if (elem == 1) {
+                if (tablero[y + i][x + j] != pieza) {
+                    canPlace=false; 
+                }
             }
         }
     }
@@ -93,10 +103,11 @@ private boolean canPlace(Block block) {
 private void placeBlock(Block block) {
     int x = block.getX();
     int y = block.getY(); 
+    Piece modelo = new Piece(block.getModelo());
     for (int i = 0; i < block.getRowsBlock(); i++) {
         for (int j = 0; j < block.getColumnsBlock(); j++) {
             // Colocar el bloque en el tablero
-            tablero[y + i][x + j] = new Piece(block.getModelo());
+            tablero[y + i][x + j] = modelo;
         }
     }
 }    
@@ -147,13 +158,26 @@ private void placeBlock(Block block) {
 
 public String toString() {
     StringBuilder result = new StringBuilder();
-    /*tengo que imprimir el tablero,   todo lo que conlleva 
-    es decir | +mas todos los estados que haya dentro del tabero |
-    asi hasta la ultima fila donde la sguiente será en toda la fila ____________
-    */
+
+    for (int i = 0; i < tablero.length; i++) {
+        result.append("|");
+        for (int j = 0; j < tablero[i].length; j++) {
+            result.append(tablero[i][j]);
+        }     
+        result.append("|");
+        result.append("\n"); 
+                 
+           
+    }
+        result.append("\u2514");    
+        for (int j=0; j<tablero.length; j++){
+            result.append("_");
+        }      
+        result.append("\u2518");  
+        result.append("\n");
+    
     return result.toString();
 }
-
 }
 
 
