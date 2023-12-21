@@ -160,18 +160,18 @@ public String toString() {
     StringBuilder result = new StringBuilder();
 
     for (int i = 0; i < tablero.length; i++) {
-        result.append("|");
+        result.append("\u2502");
         for (int j = 0; j < tablero[i].length; j++) {
             result.append(tablero[i][j]);
         }     
-        result.append("|");
+        result.append("\u2502");
         result.append("\n"); 
                  
            
     }
         result.append("\u2514");    
-        for (int j=0; j<tablero.length; j++){
-            result.append("_");
+        for (int j=0; j<tablero.length*2; j++){
+            result.append("\u2500");
         }      
         result.append("\u2518");  
         result.append("\n");
