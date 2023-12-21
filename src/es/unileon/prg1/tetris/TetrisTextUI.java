@@ -47,7 +47,7 @@ public class TetrisTextUI {
                 System.out.println(e.getMessage());
             }
 
-        } while (!end);
+        } while (end);
     }
 
     public String introduceTeclado() throws TetrisException {
