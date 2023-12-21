@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "MainTetris",
+            "request": "launch",
+            "mainClass": "es.unileon.prg1.tetris.MainTetris",
+            "projectName": "p-tetris-5a_56f0592d",
+            "args": "10 6 color"
+        }
+    ]
+}
