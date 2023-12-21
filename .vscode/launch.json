@@ -17,7 +17,7 @@
             "request": "launch",
             "mainClass": "es.unileon.prg1.tetris.MainTetris",
             "projectName": "p-tetris-5a_56f0592d",
-            "args": "10 6 color"
+            "args": "5 6 color"
         }
     ]
 }
