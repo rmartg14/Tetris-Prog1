@@ -18,42 +18,42 @@ public class BlockTest {
 
     @Test
     public void bloqueTest(){
-        assertEquals("11\n" + "11\n", blockO.toString());
+        assertEquals("O O \n" + "O O \n", blockO.toString());
     }
 
     @Test
-public void rotateLeftTest(){
-    assertEquals("11\n" + "11\n", blockO.toString());
+    public void rotateLeftTest(){
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-    blockO.rotateLeft();
-    assertEquals( "11\n" + "11\n", blockO.toString());
+        blockO.rotateLeft();
+        assertEquals( "O O \n" + "O O \n", blockO.toString());
 
-    blockO.rotateLeft();
-    assertEquals("11\n" + "11\n", blockO.toString());
+        blockO.rotateLeft();
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-    blockO.rotateLeft();
-    assertEquals("11\n" + "11\n", blockO.toString());
+        blockO.rotateLeft();
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-    blockO.rotateLeft();
-    assertEquals( "11\n" + "11\n", blockO.toString());
-}
+        blockO.rotateLeft();
+        assertEquals( "O O \n" + "O O \n", blockO.toString());
+    }
 
 
     @Test 
     public void rotateRightTest(){
-        assertEquals("11\n" + "11\n", blockO.toString());
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-        blockO.rotateRight();
-        assertEquals( "11\n" + "11\n", blockO.toString());
+        blockO.rotateRight(3);
+        assertEquals( "O O \n" + "O O \n", blockO.toString());
 
-        blockO.rotateRight();
-        assertEquals("11\n" + "11\n", blockO.toString());
+        blockO.rotateRight(3);
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-        blockO.rotateRight();
-        assertEquals("11\n" + "11\n", blockO.toString());
+        blockO.rotateRight(3);
+        assertEquals("O O \n" + "O O \n", blockO.toString());
 
-        blockO.rotateRight();
-        assertEquals( "11\n" + "11\n", blockO.toString());
+        blockO.rotateRight(3);
+        assertEquals( "O O \n" + "O O \n", blockO.toString());
     }
 
 
@@ -62,10 +62,21 @@ public void rotateLeftTest(){
     public void moveRightTest(){
         blockO.getCoordenadas().setX(0);
         blockO.getCoordenadas().setY(0);
-        blockO.moveRight();
+        blockO.moveRight(7);
         assertEquals(1, blockO.getCoordenadas().getX());
         assertEquals(0, blockO.getCoordenadas().getY());
+        blockO.moveRight(7);
+        assertEquals(2, blockO.getCoordenadas().getX());
     }
+
+    @Test
+    public void cannotMoveRightTest(){
+        blockO.getCoordenadas().setX(4);
+        blockO.getCoordenadas().setY(0);
+        blockO.moveRight(6);
+        assertEquals(4, blockO.getCoordenadas().getX());
+    }
+
 
     @Test 
     public void moveLeftTest(){
@@ -78,7 +89,16 @@ public void rotateLeftTest(){
     }
 
     @Test
+    public void cannotMoveLeftTest(){
+        blockO.getCoordenadas().setX(0);
+        blockO.getCoordenadas().setY(0);
+        blockO.moveLeft();
+        assertEquals(0, blockO.getCoordenadas().getX());
+        assertEquals(0, blockO.getCoordenadas().getY());
+    }
+
+    @Test
     public void toStringTest() {
-        assertEquals("11\n" + "11\n", blockO.toString());
+        assertEquals("O O \n" + "O O \n", blockO.toString());
     }
 }
