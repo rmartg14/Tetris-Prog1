@@ -127,7 +127,12 @@ public class Block {
         ArrayNxN array=new ArrayNxN(this.bloque);
         array=array.spinRight();
         this.bloque=array.getMinArray();
-
+       
+        if (cor.getX() + bloque.columns() >= columnas) {
+            int cont = cor.getX() + bloque.columns() - columnas ;
+            cor.setX(cor.getX()-cont);
+        }
+        
         //COMPROBAR SI ME HE SALIDO. SI ME HE SALIDO, RESTAR TANTOS COMO SEA NECESARIO PARA VOLVER A ENTRAR
     }
 
