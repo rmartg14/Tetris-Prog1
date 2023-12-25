@@ -167,7 +167,7 @@ public class Block {
        
         
         for (int i = 0; i < bloque.rows(); i++) {
-            for(int k=0;k<cor.getX();k++){
+            for(int k = 0; k < cor.getX(); k++){
                 output.append(p.toString());
             }
             for (int j = 0; j < bloque.columns(); j++) {
