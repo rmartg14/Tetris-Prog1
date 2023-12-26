@@ -15,7 +15,7 @@ public class BlockTTest {
 
     @Test
     public void blockTTest(){
-        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+        assertEquals(" T T T \n" + "  T   ", blockT.toString());
     }
 
     @Test 
@@ -67,36 +67,36 @@ public class BlockTTest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+        assertEquals(" T T T \n" + "   T   ", blockT.toString());
 
         blockT.rotateLeft();
-        assertEquals("T   \n" + "T T \n" + "T   \n", blockT.toString());
+        assertEquals(" T   \n" + " T T \n" + " T   ", blockT.toString());
 
         blockT.rotateLeft();
-        assertEquals("  T   \n" + "T T T \n", blockT.toString());
+        assertEquals("   T   \n" + " T T T ", blockT.toString());
 
         blockT.rotateLeft();
-        assertEquals("  T \n" + "T T \n" + "  T \n", blockT.toString());
+        assertEquals("   T \n" + " T T \n" + "   T ", blockT.toString());
 
         blockT.rotateLeft();
-        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+        assertEquals(" T T T \n" + "   T   ", blockT.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+        assertEquals(" T T T \n" + "   T   ", blockT.toString());
 
         blockT.rotateRight(6);
-        assertEquals("  T \n" + "T T \n" + "  T \n", blockT.toString());
+        assertEquals("   T \n" + " T T \n" + "   T ", blockT.toString());
 
         blockT.rotateRight(6);
-        assertEquals("  T   \n" + "T T T \n", blockT.toString());
+        assertEquals("   T   \n" + " T T T ", blockT.toString());
 
         blockT.rotateRight(6);
-        assertEquals("T   \n" + "T T \n" + "T   \n", blockT.toString());
+        assertEquals(" T   \n" + " T T \n" + " T   ", blockT.toString());
 
         blockT.rotateRight(6);
-        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+        assertEquals(" T T T \n" + "   T   ", blockT.toString());
     }
 
     @Test 

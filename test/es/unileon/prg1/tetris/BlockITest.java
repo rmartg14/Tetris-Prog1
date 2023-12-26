@@ -14,7 +14,7 @@ public class BlockITest {
 
     @Test
     public void blockITest(){
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
     }
 
     @Test 
@@ -66,36 +66,36 @@ public class BlockITest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
         blockI.rotateLeft();
-        assertEquals("I I I I \n", blockI.toString());
+        assertEquals(" I I I I ", blockI.toString());
 
         blockI.rotateLeft();
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
         blockI.rotateLeft();
-        assertEquals("I I I I \n", blockI.toString());
+        assertEquals(" I I I I ", blockI.toString());
 
         blockI.rotateLeft();
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
         blockI.rotateRight(6);
-        assertEquals("I I I I \n", blockI.toString());
+        assertEquals(" I I I I ", blockI.toString());
 
         blockI.rotateRight(6);
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
         blockI.rotateRight(6);
-        assertEquals("I I I I \n", blockI.toString());
+        assertEquals(" I I I I ", blockI.toString());
 
         blockI.rotateRight(6);
-        assertEquals("I \n" + "I \n" + "I \n" + "I \n", blockI.toString());
+        assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
     }
 
     @Test 

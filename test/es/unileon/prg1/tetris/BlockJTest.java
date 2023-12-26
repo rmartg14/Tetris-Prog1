@@ -15,7 +15,7 @@ public class BlockJTest {
 
     @Test
     public void blockJTest(){
-        assertEquals("  J \n" + "  J \n" + "J J \n", blockJ.toString());
+        assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
     }
 
     @Test 
@@ -67,36 +67,36 @@ public class BlockJTest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("  J \n" + "  J \n" + "J J \n", blockJ.toString());
+        assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
 
         blockJ.rotateLeft();
-        assertEquals("J J J \n" + "    J \n", blockJ.toString());
+        assertEquals(" J J J \n" + "     J ", blockJ.toString());
 
         blockJ.rotateLeft();
-        assertEquals("J J \n" + "J   \n" + "J   \n", blockJ.toString());
+        assertEquals(" J J \n" + " J   \n" + " J   ", blockJ.toString());
 
         blockJ.rotateLeft();
-        assertEquals("J     \n" + "J J J \n", blockJ.toString());
+        assertEquals(" J     \n" + " J J J ", blockJ.toString());
 
         blockJ.rotateLeft();
-        assertEquals("  J \n" + "  J \n" + "J J \n", blockJ.toString());
+        assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("  J \n" + "  J \n" + "J J \n", blockJ.toString());
+        assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
 
         blockJ.rotateRight(6);
-        assertEquals("J     \n" + "J J J \n", blockJ.toString());
+        assertEquals(" J     \n" + " J J J ", blockJ.toString());
 
         blockJ.rotateRight(6);
-        assertEquals("J J \n" + "J   \n" + "J   \n", blockJ.toString());
+        assertEquals(" J J \n" + " J   \n" + " J   ", blockJ.toString());
 
         blockJ.rotateRight(6);
-        assertEquals("J J J \n" + "    J \n", blockJ.toString());
+        assertEquals(" J J J \n" + "     J ", blockJ.toString());
 
         blockJ.rotateRight(6);
-        assertEquals("  J \n" + "  J \n" + "J J \n", blockJ.toString());
+        assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
     }
 
     @Test 

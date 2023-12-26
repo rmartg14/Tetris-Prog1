@@ -15,7 +15,7 @@ public class BlockZTest {
 
     @Test
     public void blockZTest(){
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
     }
 
     @Test 
@@ -67,36 +67,36 @@ public class BlockZTest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
         blockZ.rotateLeft();
-        assertEquals("  Z \n" + "Z Z \n" + "Z   \n", blockZ.toString());
+        assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
         blockZ.rotateLeft();
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
         blockZ.rotateLeft();
-        assertEquals("  Z \n" + "Z Z \n" + "Z   \n", blockZ.toString());
+        assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
         blockZ.rotateLeft();
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
         blockZ.rotateRight(6);
-        assertEquals("  Z \n" + "Z Z \n" + "Z   \n", blockZ.toString());
+        assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
         blockZ.rotateRight(6);
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
         blockZ.rotateRight(6);
-        assertEquals("  Z \n" + "Z Z \n" + "Z   \n", blockZ.toString());
+        assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
         blockZ.rotateRight(6);
-        assertEquals("Z Z   \n" + "  Z Z \n", blockZ.toString());
+        assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
     }
 
     @Test 

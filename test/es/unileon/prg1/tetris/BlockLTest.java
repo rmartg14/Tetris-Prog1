@@ -15,7 +15,7 @@ public class BlockLTest {
 
     @Test
     public void blockLTest(){
-        assertEquals("L   \n" + "L   \n" + "L L \n", blockL.toString());
+        assertEquals(" L   \n" + " L   \n" + " L L ", blockL.toString());
     }
 
     @Test 
@@ -67,36 +67,36 @@ public class BlockLTest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("L   \n" + "L   \n" + "L L \n", blockL.toString());
+        assertEquals(" L   \n" + " L   \n" + " L L ", blockL.toString());
 
         blockL.rotateLeft();
-        assertEquals("    L \n" + "L L L \n", blockL.toString());
+        assertEquals("     L \n" + " L L L ", blockL.toString());
 
         blockL.rotateLeft();
-        assertEquals("L L \n" + "  L \n" + "  L \n", blockL.toString());
+        assertEquals(" L L \n" + "   L \n" + "   L ", blockL.toString());
 
         blockL.rotateLeft();
-        assertEquals("L L L \n" + "L     \n", blockL.toString());
+        assertEquals(" L L L \n" + " L     ", blockL.toString());
 
         blockL.rotateLeft();
-        assertEquals("L   \n" + "L   \n" + "L L \n", blockL.toString());
+        assertEquals(" L   \n" + " L   \n" + " L L ", blockL.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("L   \n" + "L   \n" + "L L \n", blockL.toString());
+        assertEquals(" L   \n" + " L   \n" + " L L ", blockL.toString());
 
         blockL.rotateRight(6);
-        assertEquals("L L L \n" + "L     \n", blockL.toString());
+        assertEquals(" L L L \n" + " L     ", blockL.toString());
 
         blockL.rotateRight(6);
-        assertEquals("L L \n" + "  L \n" + "  L \n", blockL.toString());
+        assertEquals(" L L \n" + "   L \n" + "   L ", blockL.toString());
 
         blockL.rotateRight(6);
-        assertEquals("    L \n" + "L L L \n", blockL.toString());
+        assertEquals("     L \n" + " L L L ", blockL.toString());
 
         blockL.rotateRight(6);
-        assertEquals("L   \n" + "L   \n" + "L L \n", blockL.toString());
+        assertEquals(" L   \n" + " L   \n" + " L L ", blockL.toString());
     }
 
     @Test 
