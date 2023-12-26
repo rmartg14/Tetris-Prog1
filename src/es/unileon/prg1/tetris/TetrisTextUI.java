@@ -36,8 +36,12 @@ public class TetrisTextUI {
                         break;
                     case "S":
                         end=juego.drop();
+                        if(!end){
+                            System.out.println(" You lose with "+juego.getPoints()+" points");
+                        }
                         break;
                     case "EXIT":
+                        System.out.println("bye!");
                         end = false;
                         break;
 
