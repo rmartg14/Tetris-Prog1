@@ -67,19 +67,20 @@ public class BlockSTest {
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + 
+                        " S S   ", blockS.toString());
 
         blockS.rotateLeft();
-        assertEquals("S   \n" + "S S \n" + "  S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
         blockS.rotateLeft();
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
 
         blockS.rotateLeft();
-        assertEquals("S   \n" + "S S \n" + "  S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
         blockS.rotateLeft();
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
     }
 
     @Test
