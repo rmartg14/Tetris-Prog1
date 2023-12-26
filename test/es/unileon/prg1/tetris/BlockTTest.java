@@ -17,4 +17,103 @@ public class BlockTTest {
     public void blockTTest(){
         assertEquals("T T T \n" + "  T   \n", blockT.toString());
     }
+
+    @Test 
+    public void moveRightTest(){
+        blockT.getCoordenadas().setX(0);
+        blockT.getCoordenadas().setY(0);
+        blockT.moveRight(7);
+        assertEquals(1, blockT.getCoordenadas().getX());
+        assertEquals(0, blockT.getCoordenadas().getY());
+        blockT.moveRight(7);
+        assertEquals(2, blockT.getCoordenadas().getX());
+    }
+
+    @Test
+    public void cannotMoveRightTest(){
+        blockT.getCoordenadas().setX(3);
+        blockT.getCoordenadas().setY(0);
+        blockT.moveRight(6);
+        assertEquals(3, blockT.getCoordenadas().getX());
+    }
+
+    @Test
+    public void cannotMoveRightRotatedTest(){
+        blockT.rotateRight(6);
+        blockT.getCoordenadas().setX(4);
+        blockT.getCoordenadas().setY(0);
+        blockT.moveRight(6);
+        assertEquals(4, blockT.getCoordenadas().getX());
+    }
+
+    @Test 
+    public void moveLeftTest(){
+        blockT.getCoordenadas().setX(5);
+        blockT.getCoordenadas().setY(0);
+        blockT.moveLeft();
+        assertEquals(4, blockT.getCoordenadas().getX());
+        assertEquals(0, blockT.getCoordenadas().getY());
+        
+    }
+
+    @Test
+    public void cannotMoveLeftTest(){
+        blockT.getCoordenadas().setX(0);
+        blockT.getCoordenadas().setY(0);
+        blockT.moveLeft();
+        assertEquals(0, blockT.getCoordenadas().getX());
+        assertEquals(0, blockT.getCoordenadas().getY());
+    }
+
+    @Test
+    public void rotateLeftTest(){
+        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+
+        blockT.rotateLeft();
+        assertEquals("T   \n" + "T T \n" + "T   \n", blockT.toString());
+
+        blockT.rotateLeft();
+        assertEquals("  T   \n" + "T T T \n", blockT.toString());
+
+        blockT.rotateLeft();
+        assertEquals("  T \n" + "T T \n" + "  T \n", blockT.toString());
+
+        blockT.rotateLeft();
+        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+    }
+
+    @Test
+    public void rotateRightTest(){
+        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+
+        blockT.rotateRight(6);
+        assertEquals("  T \n" + "T T \n" + "  T \n", blockT.toString());
+
+        blockT.rotateRight(6);
+        assertEquals("  T   \n" + "T T T \n", blockT.toString());
+
+        blockT.rotateRight(6);
+        assertEquals("T   \n" + "T T \n" + "T   \n", blockT.toString());
+
+        blockT.rotateRight(6);
+        assertEquals("T T T \n" + "  T   \n", blockT.toString());
+    }
+
+    @Test 
+    public void cannotRotateRightInBounds(){
+        blockT.getCoordenadas().setX(3);
+        blockT.getCoordenadas().setY(0);
+        blockT.rotateRight(6);
+        blockT.moveRight(6);
+        blockT.rotateRight(6);
+        assertEquals(3, blockT.getCoordenadas().getX());
+    }
+
+    @Test
+    public void bajarBloqueTest(){
+        blockT.getCoordenadas().setX(0);
+        blockT.getCoordenadas().setY(0);
+        blockT.bajarBloque();
+        assertEquals(1, blockT.getCoordenadas().getY());
+    }
 }
