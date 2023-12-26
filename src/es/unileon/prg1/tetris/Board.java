@@ -115,7 +115,7 @@ public class Board {
         int x = block.getX();
         int y = block.getY();
         boolean canPlace=true;
-        if(x+block.getColumnsBlock()>=tablero[0].length){
+        if(x+block.getColumnsBlock()>=tablero[0].length+1){
             canPlace=false;
         }
         for (int i = 0; i < block.getRowsBlock(); i++) {
