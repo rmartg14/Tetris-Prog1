@@ -75,8 +75,9 @@ public class Tetris{
 
     /**
      * Este método mueve el bloque a la izquierda
+     * @throws TetrisException
      */
-    public void moveLeft() {
+    public void moveLeft() throws TetrisException {
             block.moveLeft();
         
         
@@ -103,9 +104,11 @@ public class Tetris{
         boolean puede=false;
         int puntuacionObt=0;
         
-        puede=(board.canDrop(block));
+        puede=(board.canDrop(this.block));
         if(puede){
-           puntuacionObt=board.checkAndDeleteRows();
+            
+            this.set(createRandomBlock());
+           //puntuacionObt=board.checkAndDeleteRows();
 
            points+=puntuacionObt;
         }
@@ -126,8 +129,9 @@ public class Tetris{
 
     /**
      * Este método mueve el bloque a la derecha
+     * @throws TetrisException
      */
-    public void moveRigth() {
+    public void moveRigth() throws TetrisException {
         
             int colBloque=board.getNumberOfColumns();
             block.moveRight(colBloque);
@@ -181,10 +185,10 @@ public class Tetris{
         StringBuffer buffer=new StringBuffer();
         buffer.append(block.toString());
         buffer.append("\n");
+        buffer.append("\n");
         buffer.append(board.toString());
-        buffer.append("\n");
-        buffer.append("PUNTUACION: "+points);
-        buffer.append("\n");
+        buffer.append("POINTS: "+points);
+      
 
         return buffer.toString();
     }

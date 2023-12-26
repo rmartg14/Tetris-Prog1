@@ -19,7 +19,7 @@ public class BlockSTest {
     }
     
     @Test 
-    public void moveRightTest(){
+    public void moveRightTest() throws TetrisException{
         blockS.getCoordenadas().setX(0);
         blockS.getCoordenadas().setY(0);
         blockS.moveRight(7);
@@ -30,7 +30,7 @@ public class BlockSTest {
     }
 
     @Test
-    public void cannotMoveRightTest(){
+    public void cannotMoveRightTest() throws TetrisException{
         blockS.getCoordenadas().setX(3);
         blockS.getCoordenadas().setY(0);
         blockS.moveRight(6);
@@ -38,7 +38,7 @@ public class BlockSTest {
     }
 
     @Test
-    public void cannotMoveRightRotatedTest(){
+    public void cannotMoveRightRotatedTest() throws TetrisException{
         blockS.rotateRight(6);
         blockS.getCoordenadas().setX(4);
         blockS.getCoordenadas().setY(0);
@@ -47,7 +47,7 @@ public class BlockSTest {
     }
 
     @Test 
-    public void moveLeftTest(){
+    public void moveLeftTest() throws TetrisException {
         blockS.getCoordenadas().setX(5);
         blockS.getCoordenadas().setY(0);
         blockS.moveLeft();
@@ -57,7 +57,7 @@ public class BlockSTest {
     }
 
     @Test
-    public void cannotMoveLeftTest(){
+    public void cannotMoveLeftTest() throws TetrisException{
         blockS.getCoordenadas().setX(0);
         blockS.getCoordenadas().setY(0);
         blockS.moveLeft();
@@ -84,23 +84,23 @@ public class BlockSTest {
 
     @Test
     public void rotateRightTest(){
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   \n", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("S   \n" + "S S \n" + "  S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S \n", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   \n", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("S   \n" + "S S \n" + "  S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S \n", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   \n", blockS.toString());
     }
 
     @Test 
-    public void cannotRotateRightInBounds(){
+    public void cannotRotateRightInBounds() throws TetrisException{
         blockS.getCoordenadas().setX(3);
         blockS.getCoordenadas().setY(0);
         blockS.rotateRight(6);

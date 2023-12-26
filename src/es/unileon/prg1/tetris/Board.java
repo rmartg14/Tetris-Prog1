@@ -28,7 +28,7 @@ public class Board {
     }
 
     /**
-     * creacion de una iniciacion del tablero con todo 0's
+     * creacion de una iniciacion del tablero con todo piezas vacias
      */
 
     private void iniciarTablero(){
@@ -75,28 +75,30 @@ public class Board {
         if (canPlace(block)) {
             int x = block.getX();
             int y = block.getY();
-
-            for (int i = 0; i < block.getRowsBlock(); i++) {
-                for (int j = 0; j < block.getColumnsBlock(); j++) {
-                    int elem = block.getElem(i, j);
-                    //comprobamos si el elemento es 1 o 0
-                    if (elem == 1) {
-                        if (y + j < tablero.length) {
-                            if (!tablero[y + j][x + i].isEmpty()) {
-                                //si no es pieza, devolver falso
-                                canDrop = false;
+            boolean conflicto=false;
+            while(y + block.getRowsBlock() < tablero.length&&!conflicto){
+                for (int i = 0; i < block.getRowsBlock(); i++) {
+                    for (int j = 0; j < block.getColumnsBlock(); j++) {
+                        int elem = block.getElem(i, j);
+                        //comprobamos si el elemento es 1 o 0
+                        if (elem == 1) {
+                            if (!tablero[y+1 + i][x + j].isEmpty()) {
+                                conflicto=true;    
                             }
-                        } else {
-                            
-                            canDrop = false;
                         }
                     }
                 }
+                if(!conflicto){
+                    block.bajarBloque();
+                    y = block.getY();
+                }
+
             }
-            if(canDrop){
-                placeBlock(block);
-            }
+            placeBlock(block);
+            
         
+        }else{
+            canDrop=false;
         }
 
         return canDrop;
@@ -113,6 +115,9 @@ public class Board {
         int x = block.getX();
         int y = block.getY();
         boolean canPlace=true;
+        if(x+block.getColumnsBlock()>=tablero[0].length){
+            canPlace=false;
+        }
         for (int i = 0; i < block.getRowsBlock(); i++) {
             //for (int j = 0; j < block.columns(i); j++) {
             for (int j = 0; j < block.getColumnsBlock(); j++) {
@@ -137,13 +142,13 @@ public class Board {
     private void placeBlock(Block block) {
         int x = block.getX();
         int y = block.getY(); 
-        Piece modelo = new Piece(block.getModelo());
+        
         for (int i = 0; i < block.getRowsBlock(); i++) {
             for (int j = 0; j < block.getColumnsBlock(); j++) {
                 int elem= block.getElem(i, j);
                 // Colocar el bloque en el tablero
                 if (elem == 1) {
-                    tablero[y + i][x + j] = modelo;
+                    tablero[y+i][x+j] = new Piece(block.getModelo());
                 }
             }
         }
@@ -233,7 +238,7 @@ public class Board {
             
         }
             result.append("\u2514");    
-            for (int j=0; j<tablero.length+2; j++){
+            for (int j=0; j<tablero[0].length*2; j++){
                 result.append("\u2500");
             }      
             result.append("\u2518");  

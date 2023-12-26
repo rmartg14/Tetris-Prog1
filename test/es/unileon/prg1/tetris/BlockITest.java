@@ -18,7 +18,7 @@ public class BlockITest {
     }
 
     @Test 
-    public void moveRightTest(){
+    public void moveRightTest() throws TetrisException{
         blockI.getCoordenadas().setX(0);
         blockI.getCoordenadas().setY(0);
         blockI.moveRight(7);
@@ -29,7 +29,7 @@ public class BlockITest {
     }
 
     @Test
-    public void cannotMoveRightTest(){
+    public void cannotMoveRightTest() throws TetrisException{
         blockI.getCoordenadas().setX(5);
         blockI.getCoordenadas().setY(0);
         blockI.moveRight(6);
@@ -37,7 +37,7 @@ public class BlockITest {
     }
 
     @Test
-    public void cannotMoveRightRotatedTest(){
+    public void cannotMoveRightRotatedTest() throws TetrisException{
         blockI.rotateRight(6);
         blockI.getCoordenadas().setX(2);
         blockI.getCoordenadas().setY(0);
@@ -46,7 +46,7 @@ public class BlockITest {
     }
 
     @Test 
-    public void moveLeftTest(){
+    public void moveLeftTest() throws TetrisException{
         blockI.getCoordenadas().setX(5);
         blockI.getCoordenadas().setY(0);
         blockI.moveLeft();
@@ -56,7 +56,7 @@ public class BlockITest {
     }
 
     @Test
-    public void cannotMoveLeftTest(){
+    public void cannotMoveLeftTest() throws TetrisException{
         blockI.getCoordenadas().setX(0);
         blockI.getCoordenadas().setY(0);
         blockI.moveLeft();

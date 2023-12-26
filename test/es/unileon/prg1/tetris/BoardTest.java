@@ -28,9 +28,7 @@ public class BoardTest {
         this.blockT=new BlockT();
         this.blockZ=new BlockZ();
 
-        this.board1.iniciarTablero();
-        this.board2.iniciarTablero();
-        this.board3.iniciarTablero();
+       
 
     }
 

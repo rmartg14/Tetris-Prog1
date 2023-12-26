@@ -19,7 +19,7 @@ public class BlockZTest {
     }
 
     @Test 
-    public void moveRightTest(){
+    public void moveRightTest() throws TetrisException{
         blockZ.getCoordenadas().setX(0);
         blockZ.getCoordenadas().setY(0);
         blockZ.moveRight(7);
@@ -30,7 +30,7 @@ public class BlockZTest {
     }
 
     @Test
-    public void cannotMoveRightTest(){
+    public void cannotMoveRightTest() throws TetrisException{
         blockZ.getCoordenadas().setX(3);
         blockZ.getCoordenadas().setY(0);
         blockZ.moveRight(6);
@@ -38,7 +38,7 @@ public class BlockZTest {
     }
 
     @Test
-    public void cannotMoveRightRotatedTest(){
+    public void cannotMoveRightRotatedTest() throws TetrisException{
         blockZ.rotateRight(6);
         blockZ.getCoordenadas().setX(4);
         blockZ.getCoordenadas().setY(0);
@@ -47,7 +47,7 @@ public class BlockZTest {
     }
 
     @Test 
-    public void moveLeftTest(){
+    public void moveLeftTest() throws TetrisException{
         blockZ.getCoordenadas().setX(5);
         blockZ.getCoordenadas().setY(0);
         blockZ.moveLeft();
@@ -57,7 +57,7 @@ public class BlockZTest {
     }
 
     @Test
-    public void cannotMoveLeftTest(){
+    public void cannotMoveLeftTest() throws TetrisException{
         blockZ.getCoordenadas().setX(0);
         blockZ.getCoordenadas().setY(0);
         blockZ.moveLeft();
@@ -100,7 +100,7 @@ public class BlockZTest {
     }
 
     @Test 
-    public void cannotRotateRightInBounds(){
+    public void cannotRotateRightInBounds() throws TetrisException{
         blockZ.getCoordenadas().setX(3);
         blockZ.getCoordenadas().setY(0);
         blockZ.rotateRight(6);

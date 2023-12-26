@@ -79,9 +79,9 @@ public class TetrisTest {
                      " I \n" + //
                      " I "
                      , this.tetris.create(2).toString());
-        assertEquals(" J J \n" + //
+        assertEquals("   J \n" + //
                      "   J \n" + //
-                     "   J "
+                     " J J "
                      , this.tetris.create(3).toString());
         assertEquals(" L   \n" + //
                      " L   \n" + //

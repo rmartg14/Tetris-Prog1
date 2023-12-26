@@ -138,20 +138,25 @@ public class Block {
 
     /**
 	 * Resta 1 a la coordenada x
+     * @throws TetrisException
 	 */
-    public void moveLeft(){
-        if(!(cor.getX() - 1 < 0)){
-            cor.moverIzquierda();
+    public void moveLeft() throws TetrisException{
+        if((cor.getX() - 1 < 0)){
+            throw new TetrisException("Error, no puedes mover el bloque a la izquierda");
         }
+        
+        cor.moverIzquierda();
     }
 //lanzar excepcion si no se puede mover mas
     /**
 	 * Suma 1 a la coordenada x
+     * @throws TetrisException
 	 */
-    public void moveRight(int columnas){
-        if (cor.getX() + bloque.columns() < columnas){
-            cor.moverDerecha();
+    public void moveRight(int columnas) throws TetrisException{
+        if (cor.getX() + bloque.columns() >= columnas){
+            throw new TetrisException("Error, no puedes mover el bloque a la derecha");
         }  
+        cor.moverDerecha();
     }
     /*
      * Devuelve un String del bloque creado
@@ -167,9 +172,11 @@ public class Block {
        
         
         for (int i = 0; i < bloque.rows(); i++) {
+            output.append(" ");
             for(int k = 0; k < cor.getX(); k++){
                 output.append(p.toString());
             }
+
             for (int j = 0; j < bloque.columns(); j++) {
                 
                 if (bloque.get(i, j) == 1) {
@@ -180,7 +187,9 @@ public class Block {
                 }
                 
             }
-            output.append("\n");
+            if(i!=bloque.rows()-1){
+                output.append("\n");
+            }
         }
         return output.toString(); 
     }
