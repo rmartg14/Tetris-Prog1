@@ -1,9 +1,12 @@
 package es.unileon.prg1.tetris;
 
-/*Hacer que el toString para:
-    imprima todo el el tablero con todo lo que contiene cada fila
-   
-    */
+/**
+* La clase Board representa el tablero del juego Tetris. Contiene métodos para
+* manejar la colocación de bloques, la verificación y eliminación de filas
+* completas, y la representación visual del tablero.
+* 
+* @author Mario Fernández
+*/
 
 public class Board {
 
@@ -11,11 +14,23 @@ public class Board {
     private Block block;
     private Piece Piece;
 
+    /**
+     * Constructor de la clase Board que inicializa el tablero con el número
+     * especificado de filas y columnas, y lo llena con piezas vacías.
+     * 
+     * @param rows    Número de filas del tablero.
+     * @param columns Número de columnas del tablero.
+     */
+
     public Board(int rows, int columns) {
     	this.tablero = new Piece[rows][columns];
         this.iniciarTablero();
     }
-    //creacion de una iniciacion del tablero con todo 0's
+
+    /**
+     * creacion de una iniciacion del tablero con todo 0's
+     */
+
     private void iniciarTablero(){
         for(int i=0; i<tablero.length;i++){
             for (int j=0; j<tablero[0].length; j++){
@@ -23,99 +38,125 @@ public class Board {
             }
         }
     }
+
+    /**
+     * Devuelve el número de filas del tablero.
+     * 
+     * @return Número de filas del tablero.
+     */
+
     public int getNumberOfRows(){
         return tablero.length;
     }
+
+
+    /**
+     * Devuelve el número de columnas del tablero.
+     * 
+     * @return Número de columnas del tablero.
+     */
+
     public int getNumberOfColumns(){
         return tablero[0].length;
     }
 
-/* sabiendo que lo que mide cada objeto, de ancho y largo hacer
-sabiendo dsde que x1 empieza y x2 acaba, ir bajando y's
-cuando y=0, entra la pieza?
-si
-cuando y=1, entra la pieza?
-si
-...
-cuando y=3, entra la pieza?
-no
-colocar bloque en y=3-1.
-cuando se sabe donde esta el bloque, se genera 
-si introduzo el bloque en empezando si en cordenada y+1 no entra, ya pierdes
-*/
 
+     /**
+     * Comprueba si es posible colocar el bloque en el tablero en la posición actual
+     * del bloque. Devuelve verdadero si es posible, falso de lo contrario.
+     * 
+     * @param block Bloque a colocar en el tablero.
+     * @return True si el bloque puede colocarse, false de lo contrario.
+     */
 
-public boolean canDrop(Block block) {
-    boolean canDrop = true;
-    
-    if (canPlace(block)) {
-        int x = block.getX();
-        int y = block.getY();
+    public boolean canDrop(Block block) {
+        boolean canDrop = true;
+        
+        if (canPlace(block)) {
+            int x = block.getX();
+            int y = block.getY();
 
-        for (int i = 0; i < block.getRowsBlock(); i++) {
-            for (int j = 0; j < block.getColumnsBlock(); j++) {
-                int elem = block.getElem(i, j);
-                //comprobamos si el elemento es 1 o 0
-                if (elem == 1) {
-                    if (y + j < tablero.length) {
-                        if (!tablero[y + j][x + i].isEmpty()) {
-                            //si no es pieza, devolver falso
+            for (int i = 0; i < block.getRowsBlock(); i++) {
+                for (int j = 0; j < block.getColumnsBlock(); j++) {
+                    int elem = block.getElem(i, j);
+                    //comprobamos si el elemento es 1 o 0
+                    if (elem == 1) {
+                        if (y + j < tablero.length) {
+                            if (!tablero[y + j][x + i].isEmpty()) {
+                                //si no es pieza, devolver falso
+                                canDrop = false;
+                            }
+                        } else {
+                            
                             canDrop = false;
                         }
-                    } else {
-                        
-                        canDrop = false;
+                    }
+                }
+            }
+            if(canDrop){
+                placeBlock(block);
+            }
+        
+        }
+
+        return canDrop;
+    }
+        
+    /**
+         * Comprueba si es posible colocar el bloque en el tablero en la posición actual
+         * del bloque. Devuelve verdadero si es posible, falso de lo contrario.
+         * 
+         * @param block Bloque a colocar en el tablero.
+         * @return True si el bloque puede colocarse, false de lo contrario.
+         */
+    private boolean canPlace(Block block) {
+        int x = block.getX();
+        int y = block.getY();
+        boolean canPlace=true;
+        for (int i = 0; i < block.getRowsBlock(); i++) {
+            //for (int j = 0; j < block.columns(i); j++) {
+            for (int j = 0; j < block.getColumnsBlock(); j++) {
+                int elem = block.getElem(i, j);
+                    //comprobamos si el elemento es 1 o 0
+                if (elem == 1) {
+                    if (!tablero[y + i][x + j].isEmpty()) {
+                        canPlace=false; 
                     }
                 }
             }
         }
-        if(canDrop){
-            placeBlock(block);
-        }
-    
+        return canPlace; 
     }
 
-    return canDrop;
-}
-        
-//este metodo comprueba si se puede poner o no poner el bloque en ese sitio
-private boolean canPlace(Block block) {
-    int x = block.getX();
-    int y = block.getY();
-    boolean canPlace=true;
-    for (int i = 0; i < block.getRowsBlock(); i++) {
-        //for (int j = 0; j < block.columns(i); j++) {
-        for (int j = 0; j < block.getColumnsBlock(); j++) {
-            int elem = block.getElem(i, j);
-                //comprobamos si el elemento es 1 o 0
-            if (elem == 1) {
-                if (!tablero[y + i][x + j].isEmpty()) {
-                    canPlace=false; 
+    /**
+     * Coloca el bloque en el tablero en la posición actual del bloque.
+     * 
+     * @param block Bloque a colocar en el tablero.
+     */
+
+    private void placeBlock(Block block) {
+        int x = block.getX();
+        int y = block.getY(); 
+        Piece modelo = new Piece(block.getModelo());
+        for (int i = 0; i < block.getRowsBlock(); i++) {
+            for (int j = 0; j < block.getColumnsBlock(); j++) {
+                int elem= block.getElem(i, j);
+                // Colocar el bloque en el tablero
+                if (elem == 1) {
+                    tablero[y + i][x + j] = modelo;
                 }
             }
         }
-    }
-    return canPlace; 
-}
+    }    
 
-private void placeBlock(Block block) {
-    int x = block.getX();
-    int y = block.getY(); 
-    Piece modelo = new Piece(block.getModelo());
-    for (int i = 0; i < block.getRowsBlock(); i++) {
-        for (int j = 0; j < block.getColumnsBlock(); j++) {
-            int elem= block.getElem(i, j);
-            // Colocar el bloque en el tablero
-            if (elem == 1) {
-                tablero[y + i][x + j] = modelo;
-            }
-        }
-    }
-}    
 
-//acontinuacion los metodos para la eliminacion de las filas enteras de =! piece("  ")
- 
-    //general
+    /**
+     * Comprueba y elimina las filas completas del tablero, desplazando las filas
+     * superiores hacia abajo y devolviendo el puntaje obtenido.
+     * 
+     * @return Puntaje obtenido por eliminar filas completas.
+     */
+
     public int checkAndDeleteRows(){
         int marcador = 0;
         for (int i = tablero.length - 1; i >= 0; i--) {
@@ -128,7 +169,13 @@ private void placeBlock(Block block) {
         return marcador;
     }
 
-    //comprueba SI esta o NO esta llena alguna fila
+    
+    /**
+     * Comprueba si una fila está vacía.
+     * 
+     * @param row Índice de la fila a verificar.
+     * @return True si la fila está vacía, false de lo contrario.
+     */
     private boolean isRowEmpty(int row) {
         Piece pieza=new Piece();
         boolean isRowEmpty=true;
@@ -140,14 +187,23 @@ private void placeBlock(Block block) {
         return isRowEmpty; // La fila está llena
     }
 
-    //elimina una fila y las cambia por piezas vacias
+    
+    /**
+     * Elimina una fila completa y la rellena con piezas vacías.
+     * 
+     * @param row Índice de la fila a eliminar.
+     */
     private void deleteRow(int row) {
         for (int i = 0; i < tablero[row].length; i++) {
             tablero[row][i] = new Piece(); // Reemplazar todas las piezas por Piece("  ")
         }
     }
 
-    //drop de las filas superiores a la fila eliminada
+     /**
+     * Desplaza las filas superiores hacia abajo después de eliminar una fila.
+     * 
+     * @param row Índice de la fila eliminada.
+     */
     private void rowsDrops(int row) {
         for (int i = row-1; i >= 0; i--) {
             for (int j = 0; j < tablero[i].length; j++) {
@@ -155,30 +211,36 @@ private void placeBlock(Block block) {
             }
         }
     }
-//tengo muchas dudas acerca el toString, no se si esta bien
 
-public String toString() {
-    StringBuilder result = new StringBuilder();
+    /**
+     * Devuelve una representación visual del tablero en formato de cadena de
+     * caracteres.
+     * 
+     * @return Representación visual del tablero.
+     */
 
-    for (int i = 0; i < tablero.length; i++) {
-        result.append("\u2502");
-        for (int j = 0; j < tablero[i].length; j++) {
-            result.append(tablero[i][j]);
-        }     
-        result.append("\u2502");
-        result.append("\n"); 
-                 
-           
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < tablero.length; i++) {
+            result.append("\u2502");
+            for (int j = 0; j < tablero[i].length; j++) {
+                result.append(tablero[i][j]);
+            }     
+            result.append("\u2502");
+            result.append("\n"); 
+                    
+            
+        }
+            result.append("\u2514");    
+            for (int j=0; j<tablero.length+2; j++){
+                result.append("\u2500");
+            }      
+            result.append("\u2518");  
+            result.append("\n");
+        
+        return result.toString();
     }
-        result.append("\u2514");    
-        for (int j=0; j<tablero.length+2; j++){
-            result.append("\u2500");
-        }      
-        result.append("\u2518");  
-        result.append("\n");
-    
-    return result.toString();
-}
 }
 
 
