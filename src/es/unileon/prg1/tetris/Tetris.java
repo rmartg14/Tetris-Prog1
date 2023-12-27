@@ -70,7 +70,8 @@ public class Tetris{
      * Este método rota el bloque a la izquierda
      */
     public void spinLeft() {
-        block.rotateLeft();
+        int colBloque=board.getNumberOfColumns();
+        block.rotateLeft(colBloque);
     }
 
     /**
