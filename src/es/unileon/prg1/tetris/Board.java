@@ -217,6 +217,9 @@ public class Board {
                 tablero[i + 1][j] = tablero[i][j]; // Desplazar las filas superiores hacia abajo
             }
         }
+        for (int j = 0; j < tablero[0].length; j++) {
+            tablero[0][j] = new Piece(); // Desplazar las filas superiores hacia abajo
+        }
     }
 
     /**
