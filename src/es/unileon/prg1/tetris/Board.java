@@ -165,7 +165,7 @@ public class Board {
     public int checkAndDeleteRows(){
         int marcador = 0;
         for (int i = tablero.length - 1; i >= 0; i--) {
-            if (isRowEmpty(i)) {
+            if (isRowEmpty(i)==true) {
                 deleteRow(i);
                 rowsDrops(i);
                 marcador=marcador+10;
@@ -182,23 +182,24 @@ public class Board {
      * @return True si la fila está vacía, false de lo contrario.
      */
     private boolean isRowEmpty(int row) {
-        Piece pieza=new Piece();
         boolean isRowEmpty=true;
-        for (Piece Piece : tablero[row]) {
-            if (Piece == pieza ) {
+        for (int i = 0; i < tablero[0].length; i++) {
+            if (tablero[row][i].isEmpty()) {
                 isRowEmpty = false; // La fila no está llena
             }
         }
+        
         return isRowEmpty; // La fila está llena
     }
 
-    
+
     /**
      * Elimina una fila completa y la rellena con piezas vacías.
      * 
      * @param row Índice de la fila a eliminar.
      */
     private void deleteRow(int row) {
+
         for (int i = 0; i < tablero[row].length; i++) {
             tablero[row][i] = new Piece(); // Reemplazar todas las piezas por Piece("  ")
         }
@@ -210,6 +211,7 @@ public class Board {
      * @param row Índice de la fila eliminada.
      */
     private void rowsDrops(int row) {
+        
         for (int i = row-1; i >= 0; i--) {
             for (int j = 0; j < tablero[i].length; j++) {
                 tablero[i + 1][j] = tablero[i][j]; // Desplazar las filas superiores hacia abajo

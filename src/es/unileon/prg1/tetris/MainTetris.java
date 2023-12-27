@@ -13,10 +13,12 @@ public class MainTetris {
 		if(args.length!=3){
 			System.out.println("Debes meter 3 argumentos");
 		}else{
-			try {
+			try {System.err.println();
 				rows = Integer.parseInt(args[0]);
 			} catch (NumberFormatException e) {
 				System.out.println("Error: filas no válidas.");
+			
+			
 			}
 			
 	

@@ -108,7 +108,7 @@ public class Tetris{
         if(puede){
             
             this.set(createRandomBlock());
-           //puntuacionObt=board.checkAndDeleteRows();
+           puntuacionObt=board.checkAndDeleteRows();
 
            points+=puntuacionObt;
         }
