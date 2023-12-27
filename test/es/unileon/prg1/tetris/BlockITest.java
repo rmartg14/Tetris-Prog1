@@ -68,16 +68,16 @@ public class BlockITest {
     public void rotateLeftTest(){
         assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
-        blockI.rotateLeft();
+        blockI.rotateLeft(6);
         assertEquals(" I I I I ", blockI.toString());
 
-        blockI.rotateLeft();
+        blockI.rotateLeft(6);
         assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
 
-        blockI.rotateLeft();
+        blockI.rotateLeft(6);
         assertEquals(" I I I I ", blockI.toString());
 
-        blockI.rotateLeft();
+        blockI.rotateLeft(6);
         assertEquals(" I \n" + " I \n" + " I \n" + " I ", blockI.toString());
     }
 

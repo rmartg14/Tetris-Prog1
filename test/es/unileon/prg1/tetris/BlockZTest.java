@@ -69,16 +69,16 @@ public class BlockZTest {
     public void rotateLeftTest(){
         assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
-        blockZ.rotateLeft();
+        blockZ.rotateLeft(6);
         assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
-        blockZ.rotateLeft();
+        blockZ.rotateLeft(6);
         assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
 
-        blockZ.rotateLeft();
+        blockZ.rotateLeft(6);
         assertEquals("   Z \n" + " Z Z \n" + " Z   ", blockZ.toString());
 
-        blockZ.rotateLeft();
+        blockZ.rotateLeft(6);
         assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
     }
 

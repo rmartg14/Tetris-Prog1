@@ -112,10 +112,19 @@ public class Block {
 	 * Convierte el bloque actual en un array NxN para poder llamar a spinLeft de 
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
 	 */
-    public void rotateLeft(){
-        ArrayNxN array=new ArrayNxN(this.bloque);
-        array=array.spinLeft();
-        this.bloque=array.getMinArray();
+    public void rotateLeft(int columnas){
+        if (bloque.get(0, 0) == 1 && bloque.get(1, 0) == 1 && bloque.get(0, 1) == 1 && bloque.get(1, 1) == 1) {
+            
+        } else {
+            ArrayNxN array=new ArrayNxN(this.bloque);
+            array=array.spinLeft();
+            this.bloque=array.getMinArray();
+       
+            if (cor.getX() + bloque.columns() >= columnas) {
+                int cont = cor.getX() + bloque.columns() - columnas ;
+                cor.setX(cor.getX()-cont);
+            }
+        }
     }
     /**
      * Rota el bloque hacia la derecha
@@ -124,14 +133,19 @@ public class Block {
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
 	 */
     public void rotateRight(int columnas){
-        ArrayNxN array=new ArrayNxN(this.bloque);
-        array=array.spinRight();
-        this.bloque=array.getMinArray();
+        if (bloque.get(0, 0) == 1 && bloque.get(1, 0) == 1 && bloque.get(0, 1) == 1 && bloque.get(1, 1) == 1) {
+            
+        } else {
+            ArrayNxN array=new ArrayNxN(this.bloque);
+            array=array.spinRight();
+            this.bloque=array.getMinArray();
        
-        if (cor.getX() + bloque.columns() >= columnas) {
-            int cont = cor.getX() + bloque.columns() - columnas ;
-            cor.setX(cor.getX()-cont);
+            if (cor.getX() + bloque.columns() >= columnas) {
+                int cont = cor.getX() + bloque.columns() - columnas ;
+                cor.setX(cor.getX()-cont);
+            }
         }
+        
         
         //COMPROBAR SI ME HE SALIDO. SI ME HE SALIDO, RESTAR TANTOS COMO SEA NECESARIO PARA VOLVER A ENTRAR
     }

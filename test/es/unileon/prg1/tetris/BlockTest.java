@@ -1,9 +1,6 @@
 package es.unileon.prg1.tetris;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,42 +15,42 @@ public class BlockTest {
 
     @Test
     public void bloqueTest(){
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        assertEquals(" O O \n" + " O O ", blockO.toString());
     }
 
     @Test
     public void rotateLeftTest(){
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateLeft();
-        assertEquals( "O O \n" + "O O \n", blockO.toString());
+        blockO.rotateLeft(6);
+        assertEquals( " O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateLeft();
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        blockO.rotateLeft(6);
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateLeft();
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        blockO.rotateLeft(6);
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateLeft();
-        assertEquals( "O O \n" + "O O \n", blockO.toString());
+        blockO.rotateLeft(6);
+        assertEquals( " O O \n" + " O O ", blockO.toString());
     }
 
 
     @Test 
     public void rotateRightTest(){
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateRight(3);
-        assertEquals( "O O \n" + "O O \n", blockO.toString());
+        blockO.rotateRight(6);
+        assertEquals( " O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateRight(3);
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        blockO.rotateRight(6);
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateRight(3);
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        blockO.rotateRight(6);
+        assertEquals(" O O \n" + " O O ", blockO.toString());
 
-        blockO.rotateRight(3);
-        assertEquals( "O O \n" + "O O \n", blockO.toString());
+        blockO.rotateRight(6);
+        assertEquals( " O O \n" + " O O ", blockO.toString());
     }
 
 
@@ -99,6 +96,6 @@ public class BlockTest {
 
     @Test
     public void toStringTest() {
-        assertEquals("O O \n" + "O O \n", blockO.toString());
+        assertEquals(" O O \n" + " O O ", blockO.toString());
     }
 }

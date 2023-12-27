@@ -69,16 +69,16 @@ public class BlockJTest {
     public void rotateLeftTest(){
         assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
 
-        blockJ.rotateLeft();
+        blockJ.rotateLeft(6);
         assertEquals(" J J J \n" + "     J ", blockJ.toString());
 
-        blockJ.rotateLeft();
+        blockJ.rotateLeft(6);
         assertEquals(" J J \n" + " J   \n" + " J   ", blockJ.toString());
 
-        blockJ.rotateLeft();
+        blockJ.rotateLeft(6);
         assertEquals(" J     \n" + " J J J ", blockJ.toString());
 
-        blockJ.rotateLeft();
+        blockJ.rotateLeft(6);
         assertEquals("   J \n" + "   J \n" + " J J ", blockJ.toString());
     }
 

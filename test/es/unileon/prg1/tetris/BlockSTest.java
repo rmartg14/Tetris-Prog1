@@ -15,7 +15,7 @@ public class BlockSTest {
 
     @Test
     public void blockSTest(){
-        assertEquals("  S S \n" + "S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
     }
     
     @Test 
@@ -70,34 +70,34 @@ public class BlockSTest {
         assertEquals("   S S \n" + 
                         " S S   ", blockS.toString());
 
-        blockS.rotateLeft();
+        blockS.rotateLeft(6);
         assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
-        blockS.rotateLeft();
+        blockS.rotateLeft(6);
         assertEquals("   S S \n" + " S S   ", blockS.toString());
 
-        blockS.rotateLeft();
+        blockS.rotateLeft(6);
         assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
-        blockS.rotateLeft();
+        blockS.rotateLeft(6);
         assertEquals("   S S \n" + " S S   ", blockS.toString());
     }
 
     @Test
     public void rotateRightTest(){
-        assertEquals("   S S \n" + " S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals(" S   \n" + " S S \n" + "   S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("   S S \n" + " S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals(" S   \n" + " S S \n" + "   S \n", blockS.toString());
+        assertEquals(" S   \n" + " S S \n" + "   S ", blockS.toString());
 
         blockS.rotateRight(6);
-        assertEquals("   S S \n" + " S S   \n", blockS.toString());
+        assertEquals("   S S \n" + " S S   ", blockS.toString());
     }
 
     @Test 
