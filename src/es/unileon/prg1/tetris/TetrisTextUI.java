@@ -11,7 +11,7 @@ public class TetrisTextUI {
         boolean end = true;
         String entrada = "";
         do {
-            System.out.println("TETRIS");
+            System.out.println("\n\u001b[43;1m T \u001b[42;1m E \u001b[46m T \u001b[44m R \u001b[41;1m I \u001b[45;1m S \u001B[0m\n");
             System.out.println(juego.toString());
             System.out.println("W-> GIRAR A LA IZQUIERDA");
             System.out.println("E-> GIRAR A LA DERECHA");
