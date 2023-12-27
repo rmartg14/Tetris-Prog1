@@ -165,7 +165,7 @@ public class Board {
     public int checkAndDeleteRows(){
         int marcador = 0;
         for (int i = tablero.length - 1; i >= 0; i--) {
-            if (isRowEmpty(i)==true) {
+            while (isRowEmpty(i)==true) {
                 deleteRow(i);
                 rowsDrops(i);
                 marcador=marcador+10;
