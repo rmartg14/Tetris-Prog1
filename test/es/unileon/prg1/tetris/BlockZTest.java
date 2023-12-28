@@ -13,10 +13,38 @@ public class BlockZTest {
         this.blockZ = new BlockZ();
     }
 
+    @Test(expected = TetrisException.class)
+    public void cannotMoveLeftTest() throws TetrisException{
+        blockZ.getCoordenadas().setX(0);
+        blockZ.getCoordenadas().setY(0);
+        blockZ.moveLeft();
+        assertEquals(0, blockZ.getCoordenadas().getX());
+        assertEquals(0, blockZ.getCoordenadas().getY());
+    }
+
+    @Test(expected = TetrisException.class)
+    public void cannotMoveRightTest() throws TetrisException{
+        blockZ.getCoordenadas().setX(3);
+        blockZ.getCoordenadas().setY(0);
+        blockZ.moveRight(6);
+        assertEquals(3, blockZ.getCoordenadas().getX());
+    }
+
+    @Test(expected = TetrisException.class)
+    public void cannotMoveRightRotatedTest() throws TetrisException{
+        blockZ.rotateRight(6);
+        blockZ.getCoordenadas().setX(4);
+        blockZ.getCoordenadas().setY(0);
+        blockZ.moveRight(6);
+        assertEquals(4, blockZ.getCoordenadas().getX());
+    }
+
     @Test
     public void blockZTest(){
         assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());
     }
+
+    
 
     @Test 
     public void moveRightTest() throws TetrisException{
@@ -29,22 +57,7 @@ public class BlockZTest {
         assertEquals(2, blockZ.getCoordenadas().getX());
     }
 
-    @Test
-    public void cannotMoveRightTest() throws TetrisException{
-        blockZ.getCoordenadas().setX(3);
-        blockZ.getCoordenadas().setY(0);
-        blockZ.moveRight(6);
-        assertEquals(3, blockZ.getCoordenadas().getX());
-    }
-
-    @Test
-    public void cannotMoveRightRotatedTest() throws TetrisException{
-        blockZ.rotateRight(6);
-        blockZ.getCoordenadas().setX(4);
-        blockZ.getCoordenadas().setY(0);
-        blockZ.moveRight(6);
-        assertEquals(4, blockZ.getCoordenadas().getX());
-    }
+    
 
     @Test 
     public void moveLeftTest() throws TetrisException{
@@ -56,15 +69,7 @@ public class BlockZTest {
         
     }
 
-    @Test
-    public void cannotMoveLeftTest() throws TetrisException{
-        blockZ.getCoordenadas().setX(0);
-        blockZ.getCoordenadas().setY(0);
-        blockZ.moveLeft();
-        assertEquals(0, blockZ.getCoordenadas().getX());
-        assertEquals(0, blockZ.getCoordenadas().getY());
-    }
-
+    
     @Test
     public void rotateLeftTest(){
         assertEquals(" Z Z   \n" + "   Z Z ", blockZ.toString());

@@ -12,6 +12,30 @@ public class BlockLTest {
     public void setUp(){
         this.blockL = new BlockL();
     }
+    @Test(expected = TetrisException.class)
+    public void cannotMoveRightTest() throws TetrisException{
+        blockL.getCoordenadas().setX(4);
+        blockL.getCoordenadas().setY(0);
+        blockL.moveRight(6);
+        assertEquals(4, blockL.getCoordenadas().getX());
+    }
+
+    @Test(expected = TetrisException.class)
+    public void cannotMoveRightRotatedTest() throws TetrisException{
+        blockL.rotateRight(6);
+        blockL.getCoordenadas().setX(3);
+        blockL.getCoordenadas().setY(0);
+        blockL.moveRight(6);
+        assertEquals(3, blockL.getCoordenadas().getX());
+    }
+    @Test(expected = TetrisException.class)
+    public void cannotMoveLeftTest() throws TetrisException{
+        blockL.getCoordenadas().setX(0);
+        blockL.getCoordenadas().setY(0);
+        blockL.moveLeft();
+        assertEquals(0, blockL.getCoordenadas().getX());
+        assertEquals(0, blockL.getCoordenadas().getY());
+    }
 
     @Test
     public void blockLTest(){
@@ -29,22 +53,7 @@ public class BlockLTest {
         assertEquals(2, blockL.getCoordenadas().getX());
     }
 
-    @Test
-    public void cannotMoveRightTest() throws TetrisException{
-        blockL.getCoordenadas().setX(4);
-        blockL.getCoordenadas().setY(0);
-        blockL.moveRight(6);
-        assertEquals(4, blockL.getCoordenadas().getX());
-    }
-
-    @Test
-    public void cannotMoveRightRotatedTest() throws TetrisException{
-        blockL.rotateRight(6);
-        blockL.getCoordenadas().setX(3);
-        blockL.getCoordenadas().setY(0);
-        blockL.moveRight(6);
-        assertEquals(3, blockL.getCoordenadas().getX());
-    }
+   
 
     @Test 
     public void moveLeftTest() throws TetrisException{
@@ -56,14 +65,7 @@ public class BlockLTest {
         
     }
 
-    @Test
-    public void cannotMoveLeftTest() throws TetrisException{
-        blockL.getCoordenadas().setX(0);
-        blockL.getCoordenadas().setY(0);
-        blockL.moveLeft();
-        assertEquals(0, blockL.getCoordenadas().getX());
-        assertEquals(0, blockL.getCoordenadas().getY());
-    }
+    
 
     @Test
     public void rotateLeftTest(){
