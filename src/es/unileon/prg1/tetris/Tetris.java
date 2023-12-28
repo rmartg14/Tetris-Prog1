@@ -12,12 +12,17 @@ public class Tetris{
     private Block block;
     // Atributo que es un contador para contar cuantos puntos lleva el jugador
     private int points;
+
+    private Random randomNumber;
+
     
     // Se crea el juego tetris, este contructor crea un board con la longitud que le pasa el  usuario, el primer bloque e inicializa el contador de puntos a 0
     public Tetris(int rows, int columns, String tieneColor) throws TetrisException{
             checkArguments(rows,columns);
             this.board= new Board(rows,columns);
             ColorStrategySingleton.getInstance(tieneColor);
+            this.randomNumber=new Random();
+            randomNumber.setSeed(System.currentTimeMillis());
             this.set(createRandomBlock());
             this.points=0;
     }
@@ -35,9 +40,6 @@ public class Tetris{
     // Crea un bloque aleatorio
     private Block createRandomBlock() {
         int num;
-        
-        Random randomNumber=new Random();
-        randomNumber.setSeed(System.currentTimeMillis());
         num=randomNumber.nextInt(8);
         return create(num);
     }
