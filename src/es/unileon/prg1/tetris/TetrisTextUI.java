@@ -14,11 +14,11 @@ public class TetrisTextUI {
             System.out.println("\n\u001b[43;1m T \u001b[42;1m E \u001b[46m T \u001b[44m R \u001b[41;1m I \u001b[45;1m S \u001B[0m\n");
             System.out.println(juego.toString());
             System.out.println();
-            System.out.print("       'W' -> spin left ");
-            System.out.print("'E' -> spin right\n");
-            System.out.print("'A' -> move left ");
-            System.out.print("'S' -> drop ");
-            System.out.print("'D' -> move right\n");
+            System.out.print("       'W'-> spin left ");
+            System.out.print("'E'-> spin right\n");
+            System.out.print("'A'-> move left ");
+            System.out.print("'S'-> drop ");
+            System.out.print("'D'-> move right\n");
             System.out.print("”Exit” to leave tetris)\n");
             try {
                 entrada = introduceTeclado();
