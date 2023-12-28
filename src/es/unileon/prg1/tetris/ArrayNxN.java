@@ -13,13 +13,7 @@ public class ArrayNxN extends ArrayMxN{
                 set(i,j,initial.get(i,j));
             }
         }
-        
-            
-        
-
-
-      
-      // complete the rest of the code
+     
     }
 
     private int length() {
@@ -27,23 +21,7 @@ public class ArrayNxN extends ArrayMxN{
         return array.length;
     }
 
-    private boolean isEmptyRow(int m) {
-        boolean isEmpty;
-        if(m>this.length()){
-            isEmpty=true;
-        }else{
-            isEmpty=false;
-        }
-        return isEmpty;
-    }
-
-    private boolean isEmptyColumn(int n) {
-        boolean isEmpty=false;
-        if(n>array[0].length){
-            isEmpty=true;
-        }
-        return isEmpty;
-    }
+    
 
     private int getEmptyColumnsLeft() {
         int n=this.length();
