@@ -159,8 +159,8 @@ public class Tetris{
                 break;
             case 6: bloque=new BlockS();
                 break;
-            case 7: bloque=new BlockZ();
-                break;
+            default: bloque=new BlockZ();
+                
             
         
 
