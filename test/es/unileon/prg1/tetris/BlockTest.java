@@ -12,7 +12,21 @@ public class BlockTest {
     public void setUp() throws Exception {
         this.blockO = new Block();
     }
-
+    @Test(expected = TetrisException.class)
+    public void cannotMoveRightTest() throws TetrisException{
+        blockO.getCoordenadas().setX(4);
+        blockO.getCoordenadas().setY(0);
+        blockO.moveRight(6);
+        assertEquals(4, blockO.getCoordenadas().getX());
+    }
+    @Test(expected = TetrisException.class)
+    public void cannotMoveLeftTest() throws TetrisException{
+        blockO.getCoordenadas().setX(0);
+        blockO.getCoordenadas().setY(0);
+        blockO.moveLeft();
+        assertEquals(0, blockO.getCoordenadas().getX());
+        assertEquals(0, blockO.getCoordenadas().getY());
+    }
     @Test
     public void bloqueTest(){
         assertEquals(" O O \n" + " O O ", blockO.toString());
@@ -66,13 +80,7 @@ public class BlockTest {
         assertEquals(2, blockO.getCoordenadas().getX());
     }
 
-    @Test
-    public void cannotMoveRightTest() throws TetrisException{
-        blockO.getCoordenadas().setX(4);
-        blockO.getCoordenadas().setY(0);
-        blockO.moveRight(6);
-        assertEquals(4, blockO.getCoordenadas().getX());
-    }
+   
 
 
     @Test 
@@ -85,14 +93,7 @@ public class BlockTest {
         
     }
 
-    @Test
-    public void cannotMoveLeftTest() throws TetrisException{
-        blockO.getCoordenadas().setX(0);
-        blockO.getCoordenadas().setY(0);
-        blockO.moveLeft();
-        assertEquals(0, blockO.getCoordenadas().getX());
-        assertEquals(0, blockO.getCoordenadas().getY());
-    }
+    
 
     @Test
     public void toStringTest() {
