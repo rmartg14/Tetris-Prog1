@@ -221,14 +221,13 @@ public class Board {
             tablero[0][j] = new Piece(); // Desplazar las filas superiores hacia abajo
         }
     }
-
+    
     /**
      * Devuelve una representación visual del tablero en formato de cadena de
      * caracteres.
      * 
      * @return Representación visual del tablero.
      */
-
     public String toString() {
         StringBuilder result = new StringBuilder();
 
