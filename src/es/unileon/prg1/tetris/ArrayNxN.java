@@ -14,16 +14,7 @@ public class ArrayNxN extends ArrayMxN{
             }
         }
         
-            for(int i=0;i<length();i++){
-                for(int j=0;j<array[0].length;j++){
-                    if(isEmptyRow(i)){
-                        set(i,j,0);
-                    }
-                    if(isEmptyColumn(j)){
-                        set(j,i,0);
-                    }
-                }
-            }
+            
         
 
 
