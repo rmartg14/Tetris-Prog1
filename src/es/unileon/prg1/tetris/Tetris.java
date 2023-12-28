@@ -84,17 +84,7 @@ public class Tetris{
         
     }
 
-    /**
-     * Este método comprueba si puedes bajar el bloque actual, si no puedes deveulve true, si no false
-     * @return hePerdido
-     */
-    public boolean perder() {
-        boolean hePerdido=false;
-        if(drop()==false){
-            hePerdido=true;
-        }
-        return hePerdido;
-    }
+  
 
     /**
      * Este método comprueba si puedes bajar el bloque actual, si puedes devuelve true, si no devuelve false. 

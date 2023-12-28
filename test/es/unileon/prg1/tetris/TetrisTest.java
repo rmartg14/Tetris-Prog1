@@ -100,6 +100,27 @@ public class TetrisTest {
                      " O O "
                      , this.tetris.create(0).toString());
     }
+    @Test
+    public void testGetBoard() throws TetrisException {
+        this.tetris.set(new BlockI());
+        this.tetris.drop();
+        assertEquals("│            │\n" + //
+                     "│I           │\n" + //
+                     "│I           │\n" + //
+                     "│I           │\n" + //
+                     "│I           │\n" + //
+                     "└────────────┘\n"    //
+                     ,this.tetris.getBoard().toString());
+
+    }
+    @Test
+    public void testGetBlock() throws TetrisException {
+        this.tetris.set(new Block());
+        assertEquals(" O O \n" + //
+                     " O O "
+                     , this.tetris.getBlock().toString());
+    }
+
 
     @Test
     public void testGetPoints() throws TetrisException {
