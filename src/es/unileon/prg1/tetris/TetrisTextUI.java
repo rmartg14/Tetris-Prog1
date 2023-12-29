@@ -41,10 +41,10 @@ public class TetrisTextUI {
                             System.out.println("Bye!");
                         }
                         break;
-                    case "EXIT":
+                    default:
                         System.out.println("Bye!");
                         end = false;
-                        break;
+                        
 
                 }
                 
@@ -58,7 +58,7 @@ public class TetrisTextUI {
     public String introduceTeclado() throws TetrisException {
         String in;
         in = Keyboard.readString().trim().toUpperCase();
-        if (!in.equals("W") && !in.equals("E") && !in.equals("A") && !in.equals("S") && !in.equals("D") && !in.equals("EXIT")) {
+        if (!in.equals("W") && !in.equals("E") && !in.equals("A") && !in.equals("S") && !in.equals("D") && !in.equals("EXIT")&&!in.equals("SALIR")) {
             throw new TetrisException("Error: La entrada introducida es erronea ");
         }
 
