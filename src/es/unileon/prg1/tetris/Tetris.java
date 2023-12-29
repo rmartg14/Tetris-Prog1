@@ -1,7 +1,8 @@
 package es.unileon.prg1.tetris;
 
 import java.util.Random;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import es.unileon.prg1.tetris.strategy.ColorStrategy;
 import es.unileon.prg1.tetris.strategy.ColorStrategySingleton;
 
@@ -12,7 +13,7 @@ public class Tetris{
     private Block block;
     // Atributo que es un contador para contar cuantos puntos lleva el jugador
     private int points;
-
+    static final Logger logger = LogManager.getLogger(Tetris.class.getName());
     private Random randomNumber;
 
     
@@ -30,8 +31,10 @@ public class Tetris{
     // Comprueba que las filas y columnas estan bien en el rango  
     private void checkArguments(int rows, int columns) throws TetrisException {
     if(rows<5||rows>20){
+        logger.error("El número de filas pasado por linea de comando es erróneo");
         throw new TetrisException("Error, el numero de filas debe estar entre 5 y 20");
     }else if(columns<6||columns>20){
+        logger.error("El número de columnas pasado por linea de comando es erróneo");
         throw new TetrisException("Error, el numero de columnas debe estar entre 6 y 20");
     }
 
@@ -99,10 +102,12 @@ public class Tetris{
         
         puede=(board.canDrop(this.block));
         if(puede){
-            
+            logger.info("La pieza se puede colocar con éxito");
             this.set(createRandomBlock());
            puntuacionObt=board.checkAndDeleteRows();
-
+           if(puntuacionObt>0){
+            logger.info("Se eliminan "+puntuacionObt/10+" filas y se suman "+puntuacionObt+" puntos");
+           } 
            points+=puntuacionObt;
         }
         
@@ -148,20 +153,28 @@ public class Tetris{
         Block bloque=null;
         switch(i){
             case 0: bloque=new Block();
+                    logger.info("Cuadrado creado");
                 break;
             case 1: bloque=new Block();
+                    logger.info("Cuadrado creado");
                 break;
             case 2: bloque=new BlockI();
+                    logger.info("Bloque I creado");
                 break;
             case 3: bloque=new BlockJ();
+                    logger.info("Bloque J creado");
                 break;
             case 4: bloque=new BlockL();
+                    logger.info("Bloque L creado");
                 break;
             case 5: bloque=new BlockT();
+                    logger.info("Bloque T creado");
                 break;
             case 6: bloque=new BlockS();
+                    logger.info("Bloque S creado");
                 break;
             default: bloque=new BlockZ();
+                    logger.info("Bloque Z creado");
                 
             
         

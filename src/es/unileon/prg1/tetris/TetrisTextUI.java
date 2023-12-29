@@ -1,13 +1,18 @@
 package es.unileon.prg1.tetris;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class TetrisTextUI {
     private Tetris juego;
+    static final Logger logger = LogManager.getLogger(TetrisTextUI.class.getName());
 
     public TetrisTextUI(Tetris tetris) {
         this.juego = tetris;
     }
 
     public void init() {
+        logger.info("Tetris iniciado con éxito.");
         boolean end = true;
         String entrada = "";
         do {
@@ -22,12 +27,15 @@ public class TetrisTextUI {
             System.out.print("”Exit” or ”Salir” to leave tetris)\n");
             try {
                 entrada = introduceTeclado();
+                logger.info("El usuario ha introducido por teclado: "+entrada);
                 switch (entrada) {
                     case "W":
                         juego.spinLeft();
+                        logger.info("La pieza gira hacia la izquierda");
                         break;
                     case "E":
                         juego.spinRight();
+                        logger.info("La pieza gira hacia la derecha");
                         break;
                     case "A":
                         juego.moveLeft();
@@ -39,11 +47,13 @@ public class TetrisTextUI {
                         end=juego.drop();
                         if(!end){
                             System.out.println("Bye!");
+                            logger.info("El usuario pierde con una puntuación de "+juego.getPoints()+" puntos");
                         }
                         break;
                     default:
                         System.out.println("Bye!");
                         end = false;
+                        logger.info("El usuario abandona la partida");
                         
 
                 }
@@ -59,7 +69,9 @@ public class TetrisTextUI {
         String in;
         in = Keyboard.readString().trim().toUpperCase();
         if (!in.equals("W") && !in.equals("E") && !in.equals("A") && !in.equals("S") && !in.equals("D") && !in.equals("EXIT")&&!in.equals("SALIR")) {
+            logger.error("La entrada intoducida es errónea");
             throw new TetrisException("Error: La entrada introducida es erronea ");
+            
         }
 
         return in;

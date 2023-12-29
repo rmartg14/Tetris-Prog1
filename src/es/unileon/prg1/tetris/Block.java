@@ -1,6 +1,7 @@
 package es.unileon.prg1.tetris;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * Esta clase se encarga de crear los bloques a introducir en el tetris y modificar su 
  * posición y su orentación con métodos de mover y girar los bloques
@@ -18,6 +19,8 @@ public class Block {
     protected Coordenadas cor;
     /** Atributo para acceder al tipo de piezas que va a utilizar el bloque.*/
     protected Piece modelo;
+
+    static final Logger logger = LogManager.getLogger(Block.class.getName());
     /*
      * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board-----Done
      * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY-----Done
@@ -156,9 +159,10 @@ public class Block {
 	 */
     public void moveLeft() throws TetrisException{
         if((cor.getX() - 1 < 0)){
+            logger.error("No se puede mover el bloque a la izquierda");
             throw new TetrisException("Error, no puedes mover el bloque a la izquierda");
         }
-        
+        logger.info("Se mueve el bloque a la izquierda");
         cor.moverIzquierda();
     }
 //lanzar excepcion si no se puede mover mas
@@ -168,8 +172,10 @@ public class Block {
 	 */
     public void moveRight(int columnas) throws TetrisException{
         if (cor.getX() + bloque.columns() >= columnas){
+            logger.error("No se puede mover el bloque a la derecha");
             throw new TetrisException("Error, no puedes mover el bloque a la derecha");
         }  
+        logger.info("Se mueve el bloque a la derecha");
         cor.moverDerecha();
     }
     /*
