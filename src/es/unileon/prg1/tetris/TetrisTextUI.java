@@ -19,7 +19,7 @@ public class TetrisTextUI {
             System.out.print("'A'-> move left ");
             System.out.print("'S'-> drop ");
             System.out.print("'D'-> move right\n");
-            System.out.print("”Exit” to leave tetris)\n");
+            System.out.print("”Exit” or ”Salir” to leave tetris)\n");
             try {
                 entrada = introduceTeclado();
                 switch (entrada) {
