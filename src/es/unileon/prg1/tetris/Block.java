@@ -162,7 +162,7 @@ public class Block {
             logger.error("No se puede mover el bloque a la izquierda");
             throw new TetrisException("Error, no puedes mover el bloque a la izquierda");
         }
-        logger.info("Se mueve el bloque a la izquierda");
+
         cor.moverIzquierda();
     }
 //lanzar excepcion si no se puede mover mas
@@ -175,7 +175,6 @@ public class Block {
             logger.error("No se puede mover el bloque a la derecha");
             throw new TetrisException("Error, no puedes mover el bloque a la derecha");
         }  
-        logger.info("Se mueve el bloque a la derecha");
         cor.moverDerecha();
     }
     /*

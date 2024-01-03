@@ -40,7 +40,7 @@
     <target name="compile" depends="clean">
         <mkdir dir="${classes}"/>
         <mkdir dir="${conf}"/>
-        <javac srcdir="${src}" destdir="${classes}" classpath="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar" verbose="true" debug="true"/>
+        <javac srcdir="${src}" destdir="${classes}" classpath="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar:./etc" verbose="true" debug="true"/>
         <echo message="Compilation done" file="${conf}/log.txt"/>
     </target>
 
@@ -126,7 +126,7 @@
         <java classname="es.unileon.prg1.tetris.MainTetris">
             <classpath>
                 <pathelement path="${classes}"/>
-                <pathelement path="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar"/>
+                <pathelement path="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar:./etc"/>
             </classpath>
             <arg value="10"/>
             <arg value="6"/>

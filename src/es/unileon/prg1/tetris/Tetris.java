@@ -102,7 +102,7 @@ public class Tetris{
         
         puede=(board.canDrop(this.block));
         if(puede){
-            logger.info("La pieza se puede colocar con éxito");
+            logger.info("La pieza se puede colocar con éxito en la posición x= "+block.getX());
             this.set(createRandomBlock());
            puntuacionObt=board.checkAndDeleteRows();
            if(puntuacionObt>0){

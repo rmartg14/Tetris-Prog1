@@ -14,7 +14,7 @@
 <Loggers>
 
     <Root level="info">
-        <AppenderRef ref="Log"/>
+        <AppenderRef ref="Log"/>ç
     </Root>
 </Loggers>
 </Configuration>
