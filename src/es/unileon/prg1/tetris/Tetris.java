@@ -132,12 +132,7 @@ public class Tetris{
             this.set(createRandomBlock());
            puntuacionObt=board.checkAndDeleteRows();
            if(puntuacionObt>0){
-            if(puntuacionObt==10){
-                logger.info("Se elimina "+puntuacionObt/10+" fila y se suman "+puntuacionObt+" puntos");
-            }else{
-                logger.info("Se eliminan "+puntuacionObt/10+" filas y se suman "+puntuacionObt+" puntos");
-            }
-            
+                logger.info("Se eliminan filas llenas y se suman "+puntuacionObt+" puntos");
            } 
            points+=puntuacionObt;
         }
@@ -186,9 +181,7 @@ public class Tetris{
     public Block create(int i) {
         Block bloque=null;
         switch(i){
-            case 0: bloque=new Block();
-                    logger.info("Cuadrado creado");
-                break;
+            case 0: 
             case 1: bloque=new Block();
                     logger.info("Cuadrado creado");
                 break;
