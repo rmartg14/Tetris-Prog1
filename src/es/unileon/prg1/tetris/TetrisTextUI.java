@@ -70,7 +70,7 @@ public class TetrisTextUI {
         in = Keyboard.readString().trim().toUpperCase();
         if (!in.equals("W") && !in.equals("E") && !in.equals("A") && !in.equals("S") && !in.equals("D") && !in.equals("EXIT")&&!in.equals("SALIR")) {
             logger.error("La entrada intoducida es errónea");
-            throw new TetrisException("Error: La entrada introducida es erronea ");
+            throw new TetrisException("Error: La entrada introducida es erronea, revisa las opciones ");
             
         }
 
