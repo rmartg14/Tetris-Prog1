@@ -34,7 +34,7 @@
 
     <target name="document">
         <mkdir dir="${doc}"/>
-        <javadoc sourcepath="${src}" classpath="${lib}" packagenames="${package};${packageStrategy}" destdir="${doc}" verbose="true" author="true" access="private" splitindex="true" version="true" windowtitle="${title}" doctitle="${titutitleo}"/>
+        <javadoc sourcepath="${src}" classpath="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar:./etc" packagenames="${package},${packageStrategy}" destdir="${doc}" verbose="true" author="true" access="private" splitindex="true" version="true" windowtitle="${title}" doctitle="${titutitleo}"/>
     </target>
 
     <target name="compile" depends="clean">
@@ -123,7 +123,7 @@
     </target>
 
     <target name="run" depends="compile">
-        <java classname="es.unileon.prg1.tetris.MainTetris">
+        <java classname="es.unileon.prg1.tetris.MainTetris" fork="true">
             <classpath>
                 <pathelement path="${classes}"/>
                 <pathelement path="${lib}/log4j-api-2.5.jar:${lib}/log4j-core-2.5.jar:./etc"/>
@@ -134,6 +134,6 @@
         </java>
     </target>
 
-    <target name="todo" depends="report, run"/>
+    <target name="todo" depends="report, document, run"/>
 
 </project>
