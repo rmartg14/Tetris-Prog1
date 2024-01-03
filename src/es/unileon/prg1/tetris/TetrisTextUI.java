@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  * @author Rubén Martínez
  */
 public class TetrisTextUI {
-    /** Contiene todo lo necesario para el funcionamiento del juego. */
+    /** Contiene lo necesario para el funcionamiento del juego. */
     private Tetris juego;
     /** Atributo logger, para registrar y poder replicar cada ejecución. */
     static final Logger logger = LogManager.getLogger(TetrisTextUI.class.getName());
