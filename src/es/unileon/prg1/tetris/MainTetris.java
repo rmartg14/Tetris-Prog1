@@ -37,6 +37,8 @@ public class MainTetris {
 				ui.init();
 			} catch (TetrisException e) {
 				System.out.println(e.getMessage());
+				System.out.println("Sintaxis del programa:");
+				System.out.println("MainTetris Filas Columnas Color");
 			}
 			
 

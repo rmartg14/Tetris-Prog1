@@ -50,7 +50,7 @@ public class Tetris{
 	 */ 
     private void checkArguments(int rows, int columns) throws TetrisException {
     if(rows<5||rows>20){
-        logger.error("El número de filas pasado por linea de comando es erróneo, debe estar entr 5 y 20");
+        logger.error("El número de filas pasado por linea de comando es erróneo, debe estar entre 5 y 20");
         throw new TetrisException("Error, el numero de filas debe estar entre 5 y 20");
     }else if(columns<6||columns>20){
         logger.error("El número de columnas pasado por linea de comando es erróneo, debe estar entre 6 y 20");
