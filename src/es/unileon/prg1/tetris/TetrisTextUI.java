@@ -3,14 +3,30 @@ package es.unileon.prg1.tetris;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Es la interfaz del juego, se encarga de mostrar por pantalla todas las operaciones
+ * y el funcionamiento del tetris
+ * 
+ * @author Rubén Martínez
+ */
 public class TetrisTextUI {
+    /** Contiene todo lo necesario para el funcionamiento del juego. */
     private Tetris juego;
+    /** Atributo logger, para registrar y poder replicar cada ejecución. */
     static final Logger logger = LogManager.getLogger(TetrisTextUI.class.getName());
-
+    /**
+	 * Crea el juego.
+	 * 
+	 * @param tetris Objeto de la clase tetris
+	 */
     public TetrisTextUI(Tetris tetris) {
         this.juego = tetris;
     }
-
+    /**
+	 * Inicia y pone a funcionar el tetris. Dentro de este método se encuentra el bucle
+	 * del juego y se muestran por pantalla los datos necesarios.
+	 * 
+	 */
     public void init() {
         logger.info("Tetris iniciado con éxito.");
         boolean end = true;
@@ -25,6 +41,8 @@ public class TetrisTextUI {
             System.out.print("'S'-> drop ");
             System.out.print("'D'-> move right\n");
             System.out.print("”Exit” or ”Salir” to leave tetris)\n");
+            //Captura todas las wordle exception lanzadas en esa etapa de ejecucción
+            //imprimiendo el mensaje que las acompaña
             try {
                 entrada = introduceTeclado();
                 logger.info("El usuario ha introducido por teclado: "+entrada);
@@ -64,7 +82,12 @@ public class TetrisTextUI {
 
         } while (end);
     }
-
+    /**
+	 * Lee los datos introducidos por teclado y comprueba que sean los correctos para el funcionamiento
+     * del tetris
+	 * 
+	 * @throws TetrisException Se lanza cuando se introducen datos incorrectos
+	 */
     public String introduceTeclado() throws TetrisException {
         String in;
         in = Keyboard.readString().trim().toUpperCase();

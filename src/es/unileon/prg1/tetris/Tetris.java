@@ -6,18 +6,31 @@ import org.apache.logging.log4j.Logger;
 import es.unileon.prg1.tetris.strategy.ColorStrategy;
 import es.unileon.prg1.tetris.strategy.ColorStrategySingleton;
 
+/**
+ * Clase principal del proyecto encargada de comunicarse con todas las demás y delegarle las tareas
+ * envidas desde el textUI
+ * @author Rubén Martínez
+ */
 public class Tetris{
-    // Atributo que permite cambiar el board
+    // Atributo que permite comunicarse con el board
     private Board board;
-    // Atributo que permite mover los bloques
+    // Atributo que permite crear y utilizar los bloques
     private Block block;
-    // Atributo que es un contador para contar cuantos puntos lleva el jugador
+    // Contador de puntos del jugador
     private int points;
+    //Atriuto para poder generar los logs en el fichero log.log
     static final Logger logger = LogManager.getLogger(Tetris.class.getName());
+    //Atributo para generar un número random
     private Random randomNumber;
 
     
-    // Se crea el juego tetris, este contructor crea un board con la longitud que le pasa el  usuario, el primer bloque e inicializa el contador de puntos a 0
+    /**
+	 * Constructor del juego que se encarga de inicializar todos sus componentes
+	 * 
+	 * @param rows Número de filas que tiene el board
+     * @param columns Número de columnas que tiene el board
+     * @param tieneColor String para crear el tetris en modo color o sin color
+	 */
     public Tetris(int rows, int columns, String tieneColor) throws TetrisException{
             checkArguments(rows,columns);
             this.board= new Board(rows,columns);
@@ -28,7 +41,13 @@ public class Tetris{
             this.points=0;
     }
     
-    // Comprueba que las filas y columnas estan bien en el rango  
+    /**
+	 * Método que comprueba el valor de los argumentos para que sea correcto
+	 * 
+	 * @param rows Número de filas del board
+     * @param columns Número de columnas del board
+     * @throws TetrisException Lanza excepción si el número de filas y columnas no estan entre los valores indicados
+	 */ 
     private void checkArguments(int rows, int columns) throws TetrisException {
     if(rows<5||rows>20){
         logger.error("El número de filas pasado por linea de comando es erróneo, debe estar entr 5 y 20");
@@ -40,7 +59,12 @@ public class Tetris{
 
     }
 
-    // Crea un bloque aleatorio
+    /**
+	 * Llama al método create que crea un bloque distinto dependiendo del número que le pases,
+     * pasándole un número generado de forma random entre el 0 y el 7
+	 * 
+	 * @return bloque rándom generado
+	 */
     private Block createRandomBlock() {
         int num;
         num=randomNumber.nextInt(8);
@@ -81,7 +105,7 @@ public class Tetris{
 
     /**
      * Este método mueve el bloque a la izquierda
-     * @throws TetrisException
+     * @throws TetrisException Propaga la excepción que lanza block.moveLeft()
      */
     public void moveLeft() throws TetrisException {
             block.moveLeft();
@@ -92,9 +116,11 @@ public class Tetris{
   
 
     /**
-     * Este método comprueba si puedes bajar el bloque actual, si puedes devuelve true, si no devuelve false. 
-     * Este método también es el metodo que suma la puntuación
-     * @return puede
+     * Este método comprueba si puedes bajar el bloque actual
+     * Tras colocarse el bloque comprueba si hay filas llenas y si las hay suma su puntuación a la total
+     * Tras colocar el bloque llama a createRandomBlock() para crear el siguiente bloque a colocar de forma random
+     * 
+     * @return True si se puede realizar el drop, false si no se puede
      */
     public boolean drop() {
         boolean puede=false;
@@ -106,7 +132,12 @@ public class Tetris{
             this.set(createRandomBlock());
            puntuacionObt=board.checkAndDeleteRows();
            if(puntuacionObt>0){
-            logger.info("Se eliminan "+puntuacionObt/10+" filas y se suman "+puntuacionObt+" puntos");
+            if(puntuacionObt==10){
+                logger.info("Se elimina "+puntuacionObt/10+" fila y se suman "+puntuacionObt+" puntos");
+            }else{
+                logger.info("Se eliminan "+puntuacionObt/10+" filas y se suman "+puntuacionObt+" puntos");
+            }
+            
            } 
            points+=puntuacionObt;
         }
@@ -127,27 +158,30 @@ public class Tetris{
 
     /**
      * Este método mueve el bloque a la derecha
-     * @throws TetrisException
+     * @throws TetrisException Propaga la excepción que lanza block.moveRight(colBoard)
      */
     public void moveRigth() throws TetrisException {
         
-            int colBloque=board.getNumberOfColumns();
-            block.moveRight(colBloque);
+            int colBoard=board.getNumberOfColumns();
+            block.moveRight(colBoard);
         
         
 
     }
 
     /**
-     * Este método actualiza el bloque
+     * Este método establece el siguiente bloque a colocar
+     * @param block2 Siguiente bloque a colocar
      */
     public void set(Block block2) {
         this.block=block2;
     }
 
     /**
-     * Este método crea un bloque aleatorio
-     * @return bloque
+     * Este método crea un bloque distinto dependiendo del número que recibe como parámetro
+     * 
+     * @param i Número random del 1 al 7
+     * @return bloque creado
      */
     public Block create(int i) {
         Block bloque=null;
@@ -184,8 +218,9 @@ public class Tetris{
     }
    
     /**
-     * Este método devuelve un string del juego, incluyendo el bloque y el board
-     * Cada vez que pones un bloque se vuelve a llamar a este método
+     * Este método devuelve un string del juego, incluyendo el bloque el board y la puntuación
+     * 
+     * @return Representación visual del juego.
      */
     public String toString(){
         StringBuffer buffer=new StringBuffer();

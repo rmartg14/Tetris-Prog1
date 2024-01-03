@@ -19,19 +19,12 @@ public class Block {
     protected Coordenadas cor;
     /** Atributo para acceder al tipo de piezas que va a utilizar el bloque.*/
     protected Piece modelo;
-
+    //Atriuto para poder generar los logs en el fichero log.log
     static final Logger logger = LogManager.getLogger(Block.class.getName());
-    /*
-     * Crear metodo bajarBloque llamando a dropOne de Coordenadas para poder llamar a block.bajarBloque desde board-----Done
-     * Crear metodo getX y getY que devuelvan las cooredenadas actuales del bloque llamando a cor.getX u cor.getY-----Done
-     * Crear método getModelo() que devuelva this.modelo----------Done
-     * Crar un metodo block.getElem(fila,col) para que devuelva el contenido de block[i][j] que es 1 o 0--------Done
-     * 
-     * 
-     */
+   
 
-     /**
-     * Creamos el bloque genérico que en este caso es un cuadrado de 2x2.
+    /**
+     * Constructor de la clase que crea el bloque genérico que, en este caso, es un cuadrado de 2x2.
      */
     public Block(){
         bloque = new ArrayMxN(2, 2);
@@ -47,7 +40,7 @@ public class Block {
     /**
 	 * Devuelve el modelo que corresponde a este bloque
 	 * 
-	 * @return modelo
+	 * @return Modelo(color y caracter) de cada pieza de este bloque
 	 */
     public Piece getModelo(){
         return this.modelo;
@@ -56,9 +49,9 @@ public class Block {
 	 * Devuelve el elemento que se encuentra en la posición 
      * de la fila y columna que se pasa como parámetro
 	 * 
-	 * @param row
-     * @param col
-	 * @return elem
+	 * @param row Fila de la matriz bloque
+     * @param col Columna de la matriz bloque
+	 * @return Elemento que se encontraba en la posición (row,col)
 	 */
     public int getElem(int row, int col){
         return bloque.get(row, col);
@@ -66,7 +59,7 @@ public class Block {
     /**
 	 * Devuelve las coordenadas actuales del bloque
 	 * 
-	 * @return cor
+	 * @return Coordenadas x e y del bloque
 	 */
     public Coordenadas getCoordenadas(){
         return cor;
@@ -74,7 +67,7 @@ public class Block {
     /**
 	 * Devuelve la cordenada x del bloque
 	 * 
-	 * @return cordX
+	 * @return Coordenada x del bloque
 	 */
     public int getX(){
         return cor.getX();
@@ -82,7 +75,7 @@ public class Block {
     /**
 	 * Devuelve la cordenada y del bloque
 	 * 
-	 * @return cordY
+	 * @return Coordenada y del bloque
 	 */
     public int getY(){
         return cor.getY();
@@ -90,7 +83,7 @@ public class Block {
     /**
 	 * Devuelve el número de columnas del bloque
 	 * 
-	 * @return nCols
+	 * @return Número de columnas que tiene la matriz del bloque
 	 */
     public int getColumnsBlock(){
         return bloque.columns();
@@ -98,7 +91,7 @@ public class Block {
     /**
 	 * Devuelve el número de filas del bloque
 	 * 
-	 * @return nRows
+	 * @return Número de filas que tiene la matriz del bloque
 	 */
     public int getRowsBlock(){
         return bloque.rows();
@@ -114,6 +107,8 @@ public class Block {
      * 
 	 * Convierte el bloque actual en un array NxN para poder llamar a spinLeft de 
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
+     * 
+     * @param columnas Número de columnas que tiene el tablero
 	 */
     public void rotateLeft(int columnas){
         if (bloque.get(0, 0) == 1 && bloque.get(1, 0) == 1 && bloque.get(0, 1) == 1 && bloque.get(1, 1) == 1) {
@@ -122,7 +117,7 @@ public class Block {
             ArrayNxN array=new ArrayNxN(this.bloque);
             array=array.spinLeft();
             this.bloque=array.getMinArray();
-       
+            //Si al rotar el bloque se exceden los límites del tablero se mueve el bloque a la izquierda hasta que vuelva a entrar
             if (cor.getX() + bloque.columns() >= columnas) {
                 int cont = cor.getX() + bloque.columns() - columnas ;
                 cor.setX(cor.getX()-cont);
@@ -134,6 +129,8 @@ public class Block {
      * 
 	 * Convierte el bloque actual en un array NxN para poder llamar a spinRight de 
      * ArrayNxN, tras hacer esta operación vuelve a copiar el resultado en el bloque
+     * 
+     * @param columnas Número de columnas que tiene el tablero
 	 */
     public void rotateRight(int columnas){
         if (bloque.get(0, 0) == 1 && bloque.get(1, 0) == 1 && bloque.get(0, 1) == 1 && bloque.get(1, 1) == 1) {
@@ -142,7 +139,7 @@ public class Block {
             ArrayNxN array=new ArrayNxN(this.bloque);
             array=array.spinRight();
             this.bloque=array.getMinArray();
-       
+            //Si al rotar el bloque se exceden los límites del tablero se mueve el bloque a la izquierda hasta que vuelva a entrar
             if (cor.getX() + bloque.columns() >= columnas) {
                 int cont = cor.getX() + bloque.columns() - columnas ;
                 cor.setX(cor.getX()-cont);
@@ -150,12 +147,12 @@ public class Block {
         }
         
         
-        //COMPROBAR SI ME HE SALIDO. SI ME HE SALIDO, RESTAR TANTOS COMO SEA NECESARIO PARA VOLVER A ENTRAR
+        
     }
 
     /**
 	 * Resta 1 a la coordenada x
-     * @throws TetrisException
+     * @throws TetrisException Se lanza cuando no puedo mover el bloque a la izquerda
 	 */
     public void moveLeft() throws TetrisException{
         if((cor.getX() - 1 < 0)){
@@ -165,10 +162,10 @@ public class Block {
 
         cor.moverIzquierda();
     }
-//lanzar excepcion si no se puede mover mas
+
     /**
 	 * Suma 1 a la coordenada x
-     * @throws TetrisException
+     * @throws TetrisException Se lanza cuando no puedo mover el bloque a la derecha
 	 */
     public void moveRight(int columnas) throws TetrisException{
         if (cor.getX() + bloque.columns() >= columnas){
@@ -180,9 +177,11 @@ public class Block {
     /*
      * Devuelve un String del bloque creado
      * 
-     * Desde la coordenada x=0 hasta la x actual del bloque coloca un espacio.
+     * Desde la coordenada x=0 hasta la x actual del bloque coloca una pieza vacia.
      * Una vez llega a la coordenada x recorre la pieza y dónde encuentra un 1 coloca 
      * una pieza del tipo del modelo que se inicializa en el constructor
+     * 
+     * @return Representación visual del bloque.
      */
     @Override
     public String toString(){

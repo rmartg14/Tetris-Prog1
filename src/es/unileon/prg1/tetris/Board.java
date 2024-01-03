@@ -28,7 +28,7 @@ public class Board {
     }
 
     /**
-     * creacion de una iniciacion del tablero con todo piezas vacias
+     * Creacion de una iniciacion del tablero con todo piezas vacias
      */
 
     private void iniciarTablero(){
@@ -117,7 +117,6 @@ public class Board {
         boolean canPlace=true;
         
         for (int i = 0; i < block.getRowsBlock(); i++) {
-            //for (int j = 0; j < block.columns(i); j++) {
             for (int j = 0; j < block.getColumnsBlock(); j++) {
                 int elem = block.getElem(i, j);
                     //comprobamos si el elemento es 1 o 0
